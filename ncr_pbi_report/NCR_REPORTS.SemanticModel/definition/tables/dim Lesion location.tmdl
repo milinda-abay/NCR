@@ -1,0 +1,52 @@
+table 'dim Lesion location'
+	lineageTag: c1f3e158-019b-425c-94b0-d1f08cdd01dd
+
+	column 'Field Value'
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: smallint
+		lineageTag: 4338521e-9961-4c8c-a069-689e9ee4d751
+		summarizeBy: none
+		sourceColumn: Field Value
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Lesion Group'
+		dataType: string
+		isNullable: false
+		sourceProviderType: varchar(200)
+		lineageTag: 3dea1c0f-90f4-4210-8b90-342f6519f0e8
+		summarizeBy: none
+		sourceColumn: Lesion Group
+		sortByColumn: Sort_Order
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sort_Order
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: smallint
+		lineageTag: 515d5f30-982a-4f5c-868e-36e348dbce5d
+		summarizeBy: none
+		sourceColumn: Sort_Order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dim Lesion location' = m
+		mode: import
+		queryGroup: 'Dimension tables'
+		source =
+				let
+				    Source = #"base Lesion location",
+				    #"Removed Columns" = Table.RemoveColumns(Source,{"Sort_Order"}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Removed Columns",{{"Field Value", Int64.Type}}),
+				    #"Added Conditional Column" = Table.AddColumn(#"Changed Type", "Sort_Order", each if [Lesion Group] = "RCA" then 1 else if [Lesion Group] = "LAD" then 2 else if [Lesion Group] = "LCx" then 3 else if [Lesion Group] = "Left main" then 4 else if [Lesion Group] = "Graft" then 5 else if [Lesion Group] = "Un-Defined" then 6 else 7, Int64.Type)
+				in
+				    #"Added Conditional Column"
+
+	annotation PBI_ResultType = Table
+

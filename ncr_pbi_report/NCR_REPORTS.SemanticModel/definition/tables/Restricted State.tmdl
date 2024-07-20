@@ -1,0 +1,106 @@
+/// dim State
+table 'Restricted State'
+	lineageTag: fb9071b5-2f45-4c04-8ef9-3f5cef0ff228
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 4bdc5462-99df-49d4-9ec8-80d93a05b3a1
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column STATE
+		dataType: string
+		lineageTag: 17452b5a-b1b5-431f-a348-21d39cc8f48f
+		summarizeBy: none
+		sourceColumn: STATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sort_Order
+		dataType: int64
+		formatString: 0
+		lineageTag: d8605877-6ec0-40f8-a930-890e737216d5
+		summarizeBy: sum
+		sourceColumn: Sort_Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column View_ACT
+		dataType: string
+		lineageTag: 3fffe36c-aa5f-4f4c-bb79-1e57809216d4
+		summarizeBy: none
+		sourceColumn: View_ACT
+
+		annotation SummarizationSetBy = Automatic
+
+	column View_NSW
+		dataType: string
+		lineageTag: 92f91ed7-48c0-43a7-b96a-b425e32faba4
+		summarizeBy: none
+		sourceColumn: View_NSW
+
+		annotation SummarizationSetBy = Automatic
+
+	column View_NT
+		dataType: string
+		lineageTag: e37cd29c-bb2b-4ffe-97da-dc946b24579f
+		summarizeBy: none
+		sourceColumn: View_NT
+
+		annotation SummarizationSetBy = Automatic
+
+	column View_QLD
+		dataType: string
+		lineageTag: 6b7454e3-2471-4014-9d1e-87985af7ae76
+		summarizeBy: none
+		sourceColumn: View_QLD
+
+		annotation SummarizationSetBy = Automatic
+
+	column View_SA
+		dataType: string
+		lineageTag: 49ead2cb-26ec-41e7-9bd7-afc3bd59b861
+		summarizeBy: none
+		sourceColumn: View_SA
+
+		annotation SummarizationSetBy = Automatic
+
+	column View_TAS
+		dataType: string
+		lineageTag: 626e1775-4125-421c-97b5-a9d6ab5d5762
+		summarizeBy: none
+		sourceColumn: View_TAS
+
+		annotation SummarizationSetBy = Automatic
+
+	column View_VIC
+		dataType: string
+		lineageTag: 7447c831-8472-4d26-a8dc-fa80facc5da2
+		summarizeBy: none
+		sourceColumn: View_VIC
+
+		annotation SummarizationSetBy = Automatic
+
+	column View_WA
+		dataType: string
+		lineageTag: dda1ba2e-937a-49ca-bbe8-31ac2f4b028b
+		summarizeBy: none
+		sourceColumn: View_WA
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Restricted State-ed2921d3-991d-40e8-b88e-5e39582b28fb' = m
+		mode: import
+		queryGroup: 'Dimension tables'
+		source =
+				let
+				    Source = #"base State",
+				    #"Renamed Columns" = Table.RenameColumns(Source,{{"STATE", "STATE"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

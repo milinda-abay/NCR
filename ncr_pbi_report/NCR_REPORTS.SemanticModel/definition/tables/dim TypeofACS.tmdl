@@ -1,0 +1,43 @@
+table 'dim TypeofACS'
+	lineageTag: e63bbf22-b728-4608-9e2d-aee8022cc938
+
+	column 'Field Value'
+		dataType: int64
+		isKey
+		formatString: 0
+		lineageTag: ca0967d9-4d32-4c6e-81de-0129b3432318
+		summarizeBy: none
+		sourceColumn: Field Value
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Field Description'
+		dataType: string
+		lineageTag: f1375752-1a08-4ca6-a87f-b3f2d68e505f
+		summarizeBy: none
+		sourceColumn: Field Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sort_Order
+		dataType: int64
+		formatString: 0
+		lineageTag: 2f9b697e-04b2-4c0a-b4a0-17b6d609cdc6
+		summarizeBy: none
+		sourceColumn: Sort_Order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dim TypeofACS-055f1483-7c9e-4bf2-b33a-438fcdccf454' = m
+		mode: import
+		queryGroup: 'Dimension tables'
+		source =
+				let
+				    Source = Sql.Database("t-auea-ncr-sqlsv.database.windows.net", "t-auea-ncr-sqldb"),
+				    refdata_vw_TypeofACS = Source{[Schema="refdata",Item="vw_TypeofACS"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(refdata_vw_TypeofACS,{{"Field Value", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

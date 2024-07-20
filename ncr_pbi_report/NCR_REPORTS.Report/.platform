@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "NCR_REPORTS"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "77a23f53-0942-4358-b33b-33dabea93bc6"
+  }
+}

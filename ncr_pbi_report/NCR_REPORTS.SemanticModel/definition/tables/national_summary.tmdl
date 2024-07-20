@@ -1,0 +1,38 @@
+table national_summary
+	lineageTag: 49febd5a-fa04-4983-bdca-b1b2833ff4c4
+
+	calculationGroup
+
+		calculationItem 'Blank values' = IF(SELECTEDMEASURE() = 0, BLANK(),SELECTEDMEASURE())
+
+		calculationItem 'Apply state' = ```
+				VAR selected_state =
+				    INTERSECT ( VALUES('dim State'[STATE]), VALUES('Restricted State'[STATE]) )
+				RETURN
+				    CALCULATE (
+				        SELECTEDMEASURE(),
+				        'dim State'[STATE] IN selected_state
+				        
+				    )
+				```
+
+		calculationItem National = CALCULATE (SELECTEDMEASURE(),'Restricted State'[ID] in {1,2,3,4,5,6,7,8})
+
+	column Formula
+		dataType: string
+		lineageTag: bafa8393-b972-4c9c-8ed9-3b24955686f3
+		summarizeBy: none
+		sourceColumn: Name
+		sortByColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordinal
+		dataType: int64
+		isHidden
+		lineageTag: 88610f87-e45a-48ec-be13-7f37207634af
+		summarizeBy: sum
+		sourceColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+

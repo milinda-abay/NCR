@@ -1,0 +1,121 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "eba697cb7c2231ac732d",
+  "position": {
+    "x": 0,
+    "y": 464,
+    "z": 22000,
+    "width": 208,
+    "height": 152,
+    "tabOrder": 22000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Primary PCI for STEMI presentations excludes inter-hospital transfer arrivals and patients with STEMI onset whilst a current inpatient.",
+                    "textStyle": {
+                      "fontFamily": "Calibri",
+                      "fontSize": "8pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Outliers have been excluded from Box and Whisker Plots.",
+                    "textStyle": {
+                      "fontFamily": "Calibri",
+                      "fontSize": "8pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Negative values have been excluded ",
+                    "textStyle": {
+                      "fontFamily": "Calibri",
+                      "fontSize": "8pt"
+                    }
+                  },
+                  {
+                    "value": "and values greater than 300 are converted to 300.",
+                    "textStyle": {
+                      "fontFamily": "Calibri",
+                      "fontSize": "10.6667px"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Data Notes:'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

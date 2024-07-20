@@ -1,0 +1,43 @@
+table 'dim Diabetes management type'
+	lineageTag: 8f0f29b4-8a71-4b46-9d0a-0f81fed493e9
+
+	column 'Field Value'
+		dataType: int64
+		isKey
+		formatString: 0
+		lineageTag: 0cc02641-2a47-4b4e-b679-ba3c9ec2eada
+		summarizeBy: none
+		sourceColumn: Field Value
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Field Description'
+		dataType: string
+		lineageTag: 0705baea-0165-42cf-90d9-11af8a8acb69
+		summarizeBy: none
+		sourceColumn: Field Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sort_Order
+		dataType: int64
+		formatString: 0
+		lineageTag: c1c4fc08-d29f-4def-a2d3-da63fde2e8a0
+		summarizeBy: none
+		sourceColumn: Sort_Order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dim Diabetes management type-9b47855f-9b98-4006-932d-ac6e3ff71330' = m
+		mode: import
+		queryGroup: 'Dimension tables'
+		source =
+				let
+				    Source = Sql.Database("t-auea-ncr-sqlsv.database.windows.net", "t-auea-ncr-sqldb"),
+				    refdata_vw_Diabetes_management_type = Source{[Schema="refdata",Item="vw_Diabetes_management_type"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(refdata_vw_Diabetes_management_type,{{"Field Value", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,60 @@
+table Parameter
+	lineageTag: 1662f692-18cb-44c7-a22d-37c32fad92cd
+
+	column Parameter
+		dataType: string
+		lineageTag: 9cf68074-df66-496b-bd0a-86494d838dce
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value1]
+		sortByColumn: 'Parameter Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Parameter Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Fields'
+		dataType: string
+		isHidden
+		lineageTag: a1ae9994-2cd8-4e29-9264-bf8b402c6d5b
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value2]
+		sortByColumn: 'Parameter Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 484a7e3e-42ee-4f5c-a9cd-d05db0af6780
+		summarizeBy: sum
+		isDataTypeInferred
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Parameter-c8742492-5998-4e8b-bf27-904d681665ee = calculated
+		mode: import
+		source =
+				{
+				    ("STATE", NAMEOF('Restricted State'[STATE]), 0),
+				    ("View_ACT", NAMEOF('Restricted State'[View_ACT]), 1),
+				    ("View_NSW", NAMEOF('Restricted State'[View_NSW]), 2),
+				    ("View_NT", NAMEOF('Restricted State'[View_NT]), 3),
+				    ("View_QLD", NAMEOF('Restricted State'[View_QLD]), 4),
+				    ("View_SA", NAMEOF('Restricted State'[View_SA]), 5),
+				    ("View_TAS", NAMEOF('Restricted State'[View_TAS]), 6),
+				    ("View_VIC", NAMEOF('Restricted State'[View_VIC]), 7)
+				}
+
+	annotation PBI_Id = 6c34ea52f8394c61ac1b0b1e14157ac5
+

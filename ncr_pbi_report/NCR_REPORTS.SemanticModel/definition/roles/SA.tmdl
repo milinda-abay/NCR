@@ -1,0 +1,7 @@
+role SA
+	modelPermission: read
+
+	tablePermission 'Restricted State' = [STATE] = "SA"
+
+	annotation PBI_Id = 2f02e01004d64bc68a8c51b50aaf9a35
+

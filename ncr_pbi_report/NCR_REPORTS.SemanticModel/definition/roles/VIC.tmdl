@@ -1,0 +1,7 @@
+role VIC
+	modelPermission: read
+
+	tablePermission 'Restricted State' = [STATE] = "VIC"
+
+	annotation PBI_Id = 680bd3ebf0b44082b042377f017aa717
+

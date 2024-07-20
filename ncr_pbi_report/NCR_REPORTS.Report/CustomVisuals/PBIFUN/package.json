@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0",
+  "author": {
+    "name": "Andrew Johnson",
+    "email": "Andrew.Johnson@health.wa.gov.au"
+  },
+  "resources": [
+    {
+      "resourceId": "rId0",
+      "sourceType": 5,
+      "file": "resources/PBIFUN.pbiviz.json"
+    }
+  ],
+  "visual": {
+    "guid": "PBIFUN",
+    "name": "PBIFunnels",
+    "displayName": "Funnel Plots",
+    "version": "1.0.0",
+    "description": "A PowerBI custom visual for funnel plots",
+    "supportUrl": "https://github.com/andrjohns/PowerBI-Funnels",
+    "gitHubUrl": "https://github.com/andrjohns/PowerBI-Funnels",
+    "visualClassName": "Visual"
+  },
+  "metadata": {
+    "pbivizjson": {
+      "resourceId": "rId0"
+    }
+  }
+}

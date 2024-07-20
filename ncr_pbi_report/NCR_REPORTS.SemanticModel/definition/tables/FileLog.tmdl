@@ -1,0 +1,164 @@
+/// Original name in db "Files"
+table FileLog
+	lineageTag: 51835b48-7a44-409c-9a8a-3229ee2f74b2
+
+	measure 'Last data update' =
+			
+			MAX ( FileLog[CreatedOn] )
+		formatString: General Date
+		lineageTag: 90c9c900-7abc-48da-b94a-713887e80b3d
+
+	column Id
+		dataType: string
+		lineageTag: 29a41c81-d959-4848-b6f4-3472220b2fa4
+		summarizeBy: none
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Active
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 8f90d81c-c034-4d8a-9912-5dd3314383ba
+		summarizeBy: none
+		sourceColumn: Active
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModifiedBy
+		dataType: string
+		lineageTag: 8bacfb48-1ac4-494e-bb3d-8ad86e850147
+		summarizeBy: none
+		sourceColumn: ModifiedBy
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModifiedOn
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ef24f217-21ca-458d-9dc9-c4027d9b1700
+		summarizeBy: none
+		sourceColumn: ModifiedOn
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreatedBy
+		dataType: string
+		lineageTag: 4cea53ff-8c80-428a-8d7f-0a539daa4fc0
+		summarizeBy: none
+		sourceColumn: CreatedBy
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreatedOn
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7bfd04b2-e3ca-44cf-b0ca-1666ea7a5452
+		summarizeBy: none
+		sourceColumn: CreatedOn
+
+		annotation SummarizationSetBy = Automatic
+
+	column PrimaryFile
+		dataType: string
+		lineageTag: 609832fd-fee0-415a-a6bc-8fa99594aa74
+		summarizeBy: none
+		sourceColumn: PrimaryFile
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 49614dc9-f228-4c3f-bdbe-64ab7f3c666d
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column Filename
+		dataType: string
+		lineageTag: c7c3ec9d-eccc-4102-a453-15ab54821e72
+		summarizeBy: none
+		sourceColumn: Filename
+
+		annotation SummarizationSetBy = Automatic
+
+	column DeliveryMethod
+		dataType: string
+		lineageTag: 65c6fb18-6bc3-4813-95fa-08c3e9d30c00
+		summarizeBy: none
+		sourceColumn: DeliveryMethod
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: int64
+		formatString: 0
+		lineageTag: e5b48872-444d-4f58-bec6-34f141092dc7
+		summarizeBy: sum
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column FileUrl
+		dataType: string
+		lineageTag: 679cadfc-d44b-413d-b104-02f1950151c7
+		summarizeBy: none
+		sourceColumn: FileUrl
+
+		annotation SummarizationSetBy = Automatic
+
+	column OriginalFilename
+		dataType: string
+		lineageTag: 1501bdb7-0189-4647-91f7-f1e7507c3ec3
+		summarizeBy: none
+		sourceColumn: OriginalFilename
+
+		annotation SummarizationSetBy = Automatic
+
+	column SkipValidation
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 03e8d678-e6bd-476f-8889-df42c75e5213
+		summarizeBy: none
+		sourceColumn: SkipValidation
+
+		annotation SummarizationSetBy = Automatic
+
+	column ErrorCount
+		dataType: int64
+		formatString: 0
+		lineageTag: a21a77e1-efd8-4df8-aaa8-a678dff088e5
+		summarizeBy: sum
+		sourceColumn: ErrorCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column FileStatusDescription
+		dataType: string
+		lineageTag: 84c231cd-2b29-4fdc-aee0-ce97aa169e9f
+		summarizeBy: none
+		sourceColumn: FileStatusDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column SchemaVersion
+		dataType: int64
+		formatString: 0
+		lineageTag: d8bd8c85-ba80-4901-8b2b-15af2adb1284
+		summarizeBy: sum
+		sourceColumn: SchemaVersion
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FileLog-fcfbe7ca-ef1d-4c58-83ae-7453044e512d = m
+		mode: import
+		queryGroup: Production
+		source =
+				let
+				    Source = dbo_FileLog
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

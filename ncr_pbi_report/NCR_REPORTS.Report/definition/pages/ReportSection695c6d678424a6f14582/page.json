@@ -1,0 +1,105 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/1.0.0/schema.json",
+  "name": "ReportSection695c6d678424a6f14582",
+  "displayName": "10. Risk factors",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "objects": {
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "188L"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "2657befcda7d11c1e53a",
+      "target": "96beb52681cb7c03acfd",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2657befcda7d11c1e53a",
+      "target": "7645594fb8eecab22960",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2657befcda7d11c1e53a",
+      "target": "4a3bfa07af02f094ffc2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "6474a124bcb4f6042354",
+      "target": "96beb52681cb7c03acfd",
+      "type": "NoFilter"
+    },
+    {
+      "source": "6474a124bcb4f6042354",
+      "target": "7645594fb8eecab22960",
+      "type": "NoFilter"
+    },
+    {
+      "source": "6474a124bcb4f6042354",
+      "target": "4a3bfa07af02f094ffc2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2657befcda7d11c1e53a",
+      "target": "66bc0554a816f431981f",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2657befcda7d11c1e53a",
+      "target": "11ab1f6073aa1241be2e",
+      "type": "NoFilter"
+    },
+    {
+      "source": "6474a124bcb4f6042354",
+      "target": "11ab1f6073aa1241be2e",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2657befcda7d11c1e53a",
+      "target": "283eae895e647faa5a88",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2657befcda7d11c1e53a",
+      "target": "55ca06a2588735a43aa4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "6474a124bcb4f6042354",
+      "target": "283eae895e647faa5a88",
+      "type": "NoFilter"
+    },
+    {
+      "source": "6474a124bcb4f6042354",
+      "target": "55ca06a2588735a43aa4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "6474a124bcb4f6042354",
+      "target": "66bc0554a816f431981f",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2657befcda7d11c1e53a",
+      "target": "812bb92a73a97014f079",
+      "type": "NoFilter"
+    },
+    {
+      "source": "6474a124bcb4f6042354",
+      "target": "812bb92a73a97014f079",
+      "type": "NoFilter"
+    }
+  ]
+}

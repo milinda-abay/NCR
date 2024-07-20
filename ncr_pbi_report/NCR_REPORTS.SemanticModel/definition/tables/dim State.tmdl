@@ -1,0 +1,105 @@
+table 'dim State'
+	lineageTag: 23a95bc7-4683-4294-a10b-243b7b87a178
+
+	column ID
+		dataType: int64
+		isKey
+		formatString: 0
+		lineageTag: 2fefa886-b93b-47d2-b6b2-524fa9e772cc
+		summarizeBy: none
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column STATE
+		dataType: string
+		lineageTag: 2731f01d-be79-428e-a597-0091f8f67a7b
+		summarizeBy: none
+		sourceColumn: STATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sort_Order
+		dataType: int64
+		formatString: 0
+		lineageTag: dc84f79f-8431-44fe-9ef3-3a7b39845a6b
+		summarizeBy: none
+		sourceColumn: Sort_Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column View_ACT
+		dataType: string
+		lineageTag: 32fc74a0-b754-486b-b87c-469856c97a94
+		summarizeBy: none
+		sourceColumn: View_ACT
+
+		annotation SummarizationSetBy = Automatic
+
+	column View_NSW
+		dataType: string
+		lineageTag: 48d998ec-bd63-44db-96be-0296a402663f
+		summarizeBy: none
+		sourceColumn: View_NSW
+
+		annotation SummarizationSetBy = Automatic
+
+	column View_NT
+		dataType: string
+		lineageTag: 5237e1ab-d11a-4d57-a054-a78006836032
+		summarizeBy: none
+		sourceColumn: View_NT
+
+		annotation SummarizationSetBy = Automatic
+
+	column View_QLD
+		dataType: string
+		lineageTag: df022d9b-50a9-44d8-bf28-115a6667e4a8
+		summarizeBy: none
+		sourceColumn: View_QLD
+
+		annotation SummarizationSetBy = Automatic
+
+	column View_SA
+		dataType: string
+		lineageTag: b8792610-5a47-4c3e-9aba-8adfe093820c
+		summarizeBy: none
+		sourceColumn: View_SA
+
+		annotation SummarizationSetBy = Automatic
+
+	column View_TAS
+		dataType: string
+		lineageTag: f833541b-8dc6-4fff-9a95-70961943e841
+		summarizeBy: none
+		sourceColumn: View_TAS
+
+		annotation SummarizationSetBy = Automatic
+
+	column View_VIC
+		dataType: string
+		lineageTag: 0e3e3e4b-296d-4770-9ddb-66ad5e74133f
+		summarizeBy: none
+		sourceColumn: View_VIC
+
+		annotation SummarizationSetBy = Automatic
+
+	column View_WA
+		dataType: string
+		lineageTag: b8ad38b9-8d37-46b2-9fec-469471a49193
+		summarizeBy: none
+		sourceColumn: View_WA
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dim State-cc3b89fc-bebb-4ee8-81c5-86fcfd77a952' = m
+		mode: import
+		queryGroup: 'Dimension tables'
+		source =
+				let
+				    Source = #"base State"
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,44 @@
+table 'dim PCI indication'
+	lineageTag: fa88771a-da7b-4bb3-b6d0-ffc9cf42aa98
+
+	column 'Field Value'
+		dataType: int64
+		isKey
+		formatString: 0
+		lineageTag: 68e337a3-fcbd-4e66-a9f6-12c988ec9ac7
+		summarizeBy: none
+		sourceColumn: Field Value
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Field Description'
+		dataType: string
+		lineageTag: d24e1ea5-c766-459a-add2-fefeb7aa2b9d
+		summarizeBy: none
+		sourceColumn: Field Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sort_Order
+		dataType: int64
+		formatString: 0
+		lineageTag: a27d730e-1051-4fa3-b730-0ada538345d2
+		summarizeBy: none
+		sourceColumn: Sort_Order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dim PCI indication-0b06707c-9c6a-408b-9fc9-da7fe6db3634' = m
+		mode: import
+		queryGroup: 'Dimension tables'
+		source =
+				let
+				    Source = Sql.Database("t-auea-ncr-sqlsv.database.windows.net", "t-auea-ncr-sqldb"),
+				    refdata_vw_PCI_indication = Source{[Schema="refdata",Item="vw_PCI_indication"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(refdata_vw_PCI_indication,{{"Field Value", Int64.Type}}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Changed Type",{{"Field Description", Text.Trim, type text}})
+				in
+				    #"Trimmed Text"
+
+	annotation PBI_ResultType = Table
+

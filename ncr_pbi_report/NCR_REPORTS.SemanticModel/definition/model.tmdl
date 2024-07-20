@@ -1,0 +1,70 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: en-AU
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup 'Dimension tables'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup Preprocess
+
+	annotation PBI_QueryGroupOrder = 2
+
+queryGroup Source
+
+	annotation PBI_QueryGroupOrder = 3
+
+queryGroup Production
+
+	annotation PBI_QueryGroupOrder = 1
+
+queryGroup DEV
+
+	annotation PBI_QueryGroupOrder = 4
+
+annotation PBIDesktopVersion = 2.131.901.0 (24.07)
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["dim Hospital","Calendar","dim Patient","dim BMI_Groups","dim Age Group","base Hospital","base Patient","Hospital","Patient","fact DER","dim Diabetes management type","dim TypeofACS","dim PCI indication","dim Sex","dim Indigenous Status","Restricted State","Base Measures","base State","dbo_FileLog","base Data_Extract_Report","base Lesion location","FileLog","dim State","dim Lesion location","vw_Data_Extract_Report","vw_Lesion_location_superGroup","server_name","database_name"]
+
+annotation __TEdtr = 1
+
+annotation PBI_ProTooling = ["DaxQueryView_Desktop","CalcGroup","DevMode"]
+
+ref table 'dim Hospital'
+ref table Calendar
+ref table 'dim BMI_Groups'
+ref table 'dim Age Group'
+ref table 'dim Diabetes management type'
+ref table 'dim TypeofACS'
+ref table 'dim PCI indication'
+ref table 'dim Sex'
+ref table 'dim Indigenous Status'
+ref table 'Base Measures'
+ref table 'Restricted State'
+ref table Parameter
+ref table 'dim State'
+ref table national_summary
+ref table 'dim Patient'
+ref table FileLog
+ref table 'fact DER'
+ref table 'dim Lesion location'
+
+ref role ACT
+ref role ALL
+ref role NSW
+ref role QLD
+ref role SA
+ref role WA
+ref role NT
+ref role TAS
+ref role VIC
+
+ref cultureInfo en-US
+

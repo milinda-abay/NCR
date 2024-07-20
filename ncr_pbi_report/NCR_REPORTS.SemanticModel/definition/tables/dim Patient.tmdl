@@ -1,0 +1,75 @@
+table 'dim Patient'
+	lineageTag: e2a64118-24b0-47fd-9a36-c4ca35c81f38
+
+	column HospitalID
+		dataType: int64
+		formatString: 0
+		lineageTag: 28ca9cd1-02c6-4dc8-af5e-0a1ed2c3cc94
+		summarizeBy: none
+		sourceColumn: HospitalID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: int64
+		formatString: 0
+		lineageTag: b36eb51a-e888-473d-9057-7b6404b0a5cf
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indigenous status'
+		dataType: int64
+		formatString: 0
+		lineageTag: cc460d6b-3bf7-4ea6-a2e3-4ec332108326
+		summarizeBy: none
+		sourceColumn: Indigenous status
+
+		annotation SummarizationSetBy = Automatic
+
+	column SortOrder
+		dataType: int64
+		formatString: 0
+		lineageTag: ea84f1b7-6ca4-4829-b7f1-f0d71d74c251
+		summarizeBy: none
+		sourceColumn: SortOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column UniquePatient#
+		dataType: string
+		lineageTag: 61ea27b8-f7f9-48b9-933d-1311e8096df9
+		summarizeBy: none
+		sourceColumn: UniquePatient#
+
+		annotation SummarizationSetBy = Automatic
+
+	column NCRPatientId
+		dataType: int64
+		formatString: 0
+		lineageTag: 245941fa-20e8-4231-b2a0-5a913a8cea50
+		summarizeBy: none
+		sourceColumn: NCRPatientId
+
+		annotation SummarizationSetBy = Automatic
+
+	column PatientId
+		dataType: string
+		lineageTag: b7ac8171-b9eb-4e38-9d24-80c8b8658b2e
+		summarizeBy: none
+		sourceColumn: PatientId
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dim Patient-fbe236d4-b88d-4aa2-acce-c20e747de1bd' = m
+		mode: import
+		queryGroup: 'Dimension tables'
+		source =
+				let
+				    Source = #"base Patient"
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

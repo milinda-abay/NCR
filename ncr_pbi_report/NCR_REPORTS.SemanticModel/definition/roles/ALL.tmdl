@@ -1,0 +1,5 @@
+role ALL
+	modelPermission: read
+
+	annotation PBI_Id = d6234c606ba84d92bd006111948061b5
+

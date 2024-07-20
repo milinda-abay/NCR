@@ -1,0 +1,1051 @@
+expression Patient =
+		let
+		    Source = Sql.Database(server_name, database_name, [CommandTimeout=#duration(0, 1, 0, 0)]),
+		    Dim_Patient = Source{[Schema="dim",Item="Patient"]}[Data]
+		in
+		    Dim_Patient
+	lineageTag: 80da1ab1-b17c-4b49-8316-90573c464560
+	queryGroup: Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Hospital =
+		let
+		    Source = Sql.Database(server_name, database_name),
+		    dim_Hospital = Source{[Schema="dim",Item="Hospital"]}[Data]
+		in
+		    dim_Hospital
+	lineageTag: 0b30c5a3-88d1-4821-9ca2-4420558d9a5e
+	queryGroup: Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'base State' =
+		let
+		    Source = Sql.Database("t-auea-ncr-sqlsv.database.windows.net", "t-auea-ncr-sqldb"),
+		    refdata_vw_state = Source{[Schema="refdata",Item="vw_state"]}[Data],
+		    #"Changed Type" = Table.TransformColumnTypes(refdata_vw_state,{{"ID", Int64.Type}}),
+		    Custom1 = #"Changed Type"[[STATE]],
+		    Rename_col = Table.AddColumn(Custom1, "Custom", each {[STATE],"View_"&[STATE]})[Custom],
+		    #"Duplicated Column1" = Table.DuplicateColumn(#"Changed Type", "STATE", "STATE - Copy"),
+		    #"Duplicated Column2" = Table.DuplicateColumn(#"Duplicated Column1", "STATE - Copy", "STATE - Copy - Copy"),
+		    #"Pivoted Column" = Table.Pivot(#"Duplicated Column2", List.Distinct(#"Duplicated Column2"[#"STATE - Copy"]), "STATE - Copy", "STATE - Copy - Copy"),
+		    #"Renamed Columns" = Table.RenameColumns(#"Pivoted Column",Rename_col),
+		    #"Replaced Value" = Table.ReplaceValue(#"Renamed Columns",null,"Other",Replacer.ReplaceValue,{"View_ACT", "View_NSW", "View_NT", "View_QLD", "View_SA", "View_TAS", "View_VIC", "View_WA"})
+		in
+		    #"Replaced Value"
+	lineageTag: 57605230-32f3-4895-9b04-d54e9d6f5371
+	queryGroup: Preprocess
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'base Patient' =
+		let
+		    Source = Patient,
+		    #"Removed Columns" = Table.RemoveColumns(Source,{"HashKey", "CreateUserName", "CreateDateTime", "UpdateUserName", "UpdateDateTime", "PPRL First Name", "PPRL Last Name", "PPRL Sex", "PPRL DOB", "PPRL Postcode"}),
+		    #"Inserted Merged Column" = Table.AddColumn(#"Removed Columns", "UniquePatient#", each Text.Combine({Number.ToText([HospitalID]),[PatientId]}, ""), type text)
+		in
+		    #"Inserted Merged Column"
+	lineageTag: 830a14c4-fe2d-41eb-ac95-b3b16456691e
+	queryGroup: Preprocess
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+/// Original name in db "Files"
+expression dbo_FileLog =
+		let
+		    Source = Sql.Database(server_name, database_name),
+		    refdata_vw_BMI_Groups = Source{[Schema="dbo",Item="Files"]}[Data]
+		in
+		    refdata_vw_BMI_Groups
+	lineageTag: 54bdd9c2-83df-4f37-9dff-f16f1042c3a4
+	queryGroup: Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'base Data_Extract_Report' = ```
+		let
+		  Source = vw_Data_Extract_Report, 
+		  #"Changed Type" = Table.TransformColumnTypes(
+		    Source, 
+		    {
+		      {"hid", Int64.Type}, 
+		      {"doa", type date}, 
+		      {"toa", type time}, 
+		      {"dop", type date}, 
+		      {"top", type time}, 
+		      {"pcabg", Int64.Type}, 
+		      {"dpcabg", type date}, 
+		      {"dppci", type date}, 
+		      {"def", type date}, 
+		      {"dso", type date}, 
+		      {"dbd", type date}, 
+		      {"dfmc", type date}, 
+		      {"decgd", type date}, 
+		      {"dod", type date}, 
+		      {"rhdte_3", type date}, 
+		      {"rhdte_4", type date}, 
+		      {"rhdte_5", type date}, 
+		      {"rhdte_6", type date}, 
+		      {"rhdte", type date}, 
+		      {"rhdte_2", type date}, 
+		      {"dfu30", type date}, 
+		      {"dmort30", type date}
+		    }
+		  ), 
+		  #"Inserted unique_patient_id" = Table.AddColumn(
+		    #"Changed Type", 
+		    "unique_patient_id", 
+		    each Text.Combine({Text.From([ncrhid], "en-AU"), Text.Trim([patientid])}, ""), 
+		    type text
+		  ), 
+		  #"Sorted Rows" = Table.Sort(#"Inserted unique_patient_id", {{"dop", Order.Ascending}}), 
+		  #"Grouped Rows" = Table.Group(
+		    #"Sorted Rows", 
+		    {"unique_patient_id"}, 
+		    {
+		      {
+		        "Count", 
+		        each Table.AddIndexColumn(_, "procone", 1, 1, Int64.Type), 
+		        type table [
+		          hname = text, 
+		          pcode = nullable text, 
+		          hid = nullable Int64.Type, 
+		          ncrhid = nullable Int64.Type, 
+		          patientid = nullable text, 
+		          sex = nullable Int64.Type, 
+		          inds = nullable Int64.Type, 
+		          doa = nullable date, 
+		          toa = nullable time, 
+		          age = nullable Int64.Type, 
+		          htm = nullable Int64.Type, 
+		          wkg = nullable Int64.Type, 
+		          bmi = text, 
+		          dop = nullable date, 
+		          top = nullable time, 
+		          po = nullable text, 
+		          ncrpo = nullable text, 
+		          db = nullable Int64.Type, 
+		          dbm = nullable Int64.Type, 
+		          pvd1 = nullable Int64.Type, 
+		          pvd2 = nullable Int64.Type, 
+		          pcabg = nullable Int64.Type, 
+		          dpcabg = nullable date, 
+		          ppci = nullable Int64.Type, 
+		          dppci = nullable date, 
+		          pcr = nullable Int64.Type, 
+		          npcr = nullable Int64.Type, 
+		          eftp = nullable Int64.Type, 
+		          def = nullable date, 
+		          eft = nullable Int64.Type, 
+		          ef = nullable Int64.Type, 
+		          efes = nullable Int64.Type, 
+		          egfri = nullable number, 
+		          egfr = nullable number, 
+		          shock = nullable Int64.Type, 
+		          oca = nullable Int64.Type, 
+		          pint = nullable Int64.Type, 
+		          acs = nullable Int64.Type, 
+		          dso = nullable date, 
+		          tso = nullable time, 
+		          ntso = nullable Int64.Type, 
+		          acst = nullable Int64.Type, 
+		          iht = nullable Int64.Type, 
+		          phn = nullable Int64.Type, 
+		          dbd = nullable date, 
+		          tbd = nullable time, 
+		          sor = nullable Int64.Type, 
+		          dbdt = nullable Int64.Type, 
+		          spr = nullable Int64.Type, 
+		          dfmc = nullable date, 
+		          tfmc = nullable time, 
+		          sofmc = nullable Int64.Type, 
+		          fmctr = nullable Int64.Type, 
+		          fmctd = nullable Int64.Type, 
+		          decgd = nullable date, 
+		          tecgd = nullable time, 
+		          ecgdb = nullable Int64.Type, 
+		          inp = nullable Int64.Type, 
+		          pci = nullable Int64.Type, 
+		          pel = nullable Int64.Type, 
+		          pintr = nullable Int64.Type, 
+		          vsr = nullable Int64.Type, 
+		          lr1_lesion = nullable Int64.Type, 
+		          lr1_isr = nullable Int64.Type, 
+		          lr1_isrst = nullable Int64.Type, 
+		          lr1_lst = nullable Int64.Type, 
+		          lr1_sit = nullable Int64.Type, 
+		          lr2_lesion = nullable Int64.Type, 
+		          lr2_isr = nullable Int64.Type, 
+		          lr2_isrst = nullable Int64.Type, 
+		          lr2_lst = nullable Int64.Type, 
+		          lr2_sit = nullable Int64.Type, 
+		          lr3_lesion = nullable Int64.Type, 
+		          lr3_isr = nullable Int64.Type, 
+		          lr3_isrst = nullable Int64.Type, 
+		          lr3_lst = nullable Int64.Type, 
+		          lr3_sit = nullable Int64.Type, 
+		          lr4_lesion = nullable Int64.Type, 
+		          lr4_isr = nullable Int64.Type, 
+		          lr4_isrst = nullable Int64.Type, 
+		          lr4_lst = nullable Int64.Type, 
+		          lr4_sit = nullable Int64.Type, 
+		          lr5_lesion = nullable Int64.Type, 
+		          lr5_isr = nullable Int64.Type, 
+		          lr5_isrst = nullable Int64.Type, 
+		          lr5_lst = nullable Int64.Type, 
+		          lr5_sit = nullable Int64.Type, 
+		          tak = nullable Int64.Type, 
+		          dap = nullable Int64.Type, 
+		          tft = nullable number, 
+		          ihmi = nullable Int64.Type, 
+		          ihpci = nullable Int64.Type, 
+		          ihpcip = nullable Int64.Type, 
+		          ihtvr = nullable Int64.Type, 
+		          ihtlr = nullable Int64.Type, 
+		          ihcab = nullable Int64.Type, 
+		          ihpcab = nullable Int64.Type, 
+		          ihtvcab = nullable Int64.Type, 
+		          ihstr = nullable Int64.Type, 
+		          ihstrt = nullable Int64.Type, 
+		          ihbl = nullable Int64.Type, 
+		          ihblsite = nullable Int64.Type, 
+		          ihst = nullable Int64.Type, 
+		          dis = nullable Int64.Type, 
+		          dod = nullable date, 
+		          los = nullable Int64.Type, 
+		          crehab = nullable Int64.Type, 
+		          mortc = nullable Int64.Type, 
+		          dasp = nullable Int64.Type, 
+		          doap = nullable Int64.Type, 
+		          dstp = nullable Int64.Type, 
+		          doll = nullable Int64.Type, 
+		          dfu30 = nullable date, 
+		          stat30 = nullable Int64.Type, 
+		          dmort30 = nullable date, 
+		          mort30r = nullable Int64.Type, 
+		          mi30 = nullable Int64.Type, 
+		          st30 = nullable Int64.Type, 
+		          nstr = nullable Int64.Type, 
+		          nstrt = nullable Int64.Type, 
+		          crh30 = nullable Int64.Type, 
+		          rhdte = nullable date, 
+		          pc30 = nullable Int64.Type, 
+		          pci30 = nullable Int64.Type, 
+		          tvr30 = nullable Int64.Type, 
+		          tlr30 = nullable Int64.Type, 
+		          cab30 = nullable Int64.Type, 
+		          tvcab30 = nullable Int64.Type, 
+		          crh30_2 = nullable Int64.Type, 
+		          rhdte_2 = nullable date, 
+		          pc30_2 = nullable Int64.Type, 
+		          pci30_2 = nullable Int64.Type, 
+		          tvr30_2 = nullable Int64.Type, 
+		          tlr30_2 = nullable Int64.Type, 
+		          cab30_2 = nullable Int64.Type, 
+		          tvcab30_2 = nullable Int64.Type, 
+		          crh30_3 = nullable Int64.Type, 
+		          rhdte_3 = nullable date, 
+		          pc30_3 = nullable Int64.Type, 
+		          pci30_3 = nullable Int64.Type, 
+		          tvr30_3 = nullable Int64.Type, 
+		          tlr30_3 = nullable Int64.Type, 
+		          cab30_3 = nullable Int64.Type, 
+		          tvcab30_3 = nullable Int64.Type, 
+		          crh30_4 = nullable Int64.Type, 
+		          rhdte_4 = nullable date, 
+		          pc30_4 = nullable Int64.Type, 
+		          pci30_4 = nullable Int64.Type, 
+		          tvr30_4 = nullable Int64.Type, 
+		          tlr30_4 = nullable Int64.Type, 
+		          cab30_4 = nullable Int64.Type, 
+		          tvcab30_4 = nullable Int64.Type, 
+		          crh30_5 = nullable Int64.Type, 
+		          rhdte_5 = nullable date, 
+		          pc30_5 = nullable Int64.Type, 
+		          pci30_5 = nullable Int64.Type, 
+		          tvr30_5 = nullable Int64.Type, 
+		          tlr30_5 = nullable Int64.Type, 
+		          cab30_5 = nullable Int64.Type, 
+		          tvcab30_5 = nullable Int64.Type, 
+		          crh30_6 = nullable Int64.Type, 
+		          rhdte_6 = nullable date, 
+		          pc30_6 = nullable Int64.Type, 
+		          pci30_6 = nullable Int64.Type, 
+		          tvr30_6 = nullable Int64.Type, 
+		          tlr30_6 = nullable Int64.Type, 
+		          cab30_6 = nullable Int64.Type, 
+		          tvcab30_6 = nullable Int64.Type, 
+		          unique_patient_id = text, 
+		          procone = nullable Int64.Type
+		        ]
+		      }
+		    }
+		  ), 
+		  #"Removed Other Columns" = Table.SelectColumns(#"Grouped Rows", {"Count"}), 
+		  #"Expanded Count" = Table.ExpandTableColumn(
+		    #"Removed Other Columns", 
+		    "Count", 
+		    {
+		      "hname", 
+		      "pcode", 
+		      "hid", 
+		      "ncrhid", 
+		      "patientid", 
+		      "sex", 
+		      "inds", 
+		      "doa", 
+		      "toa", 
+		      "age", 
+		      "htm", 
+		      "wkg", 
+		      "bmi", 
+		      "dop", 
+		      "top", 
+		      "po", 
+		      "ncrpo", 
+		      "db", 
+		      "dbm", 
+		      "pvd1", 
+		      "pvd2", 
+		      "pcabg", 
+		      "dpcabg", 
+		      "ppci", 
+		      "dppci", 
+		      "pcr", 
+		      "npcr", 
+		      "eftp", 
+		      "def", 
+		      "eft", 
+		      "ef", 
+		      "efes", 
+		      "egfri", 
+		      "egfr", 
+		      "shock", 
+		      "oca", 
+		      "pint", 
+		      "acs", 
+		      "dso", 
+		      "tso", 
+		      "ntso", 
+		      "acst", 
+		      "iht", 
+		      "phn", 
+		      "dbd", 
+		      "tbd", 
+		      "sor", 
+		      "dbdt", 
+		      "spr", 
+		      "dfmc", 
+		      "tfmc", 
+		      "sofmc", 
+		      "fmctr", 
+		      "fmctd", 
+		      "decgd", 
+		      "tecgd", 
+		      "ecgdb", 
+		      "inp", 
+		      "pci", 
+		      "pel", 
+		      "pintr", 
+		      "vsr", 
+		      "lr1_lesion", 
+		      "lr1_isr", 
+		      "lr1_isrst", 
+		      "lr1_lst", 
+		      "lr1_sit", 
+		      "lr2_lesion", 
+		      "lr2_isr", 
+		      "lr2_isrst", 
+		      "lr2_lst", 
+		      "lr2_sit", 
+		      "lr3_lesion", 
+		      "lr3_isr", 
+		      "lr3_isrst", 
+		      "lr3_lst", 
+		      "lr3_sit", 
+		      "lr4_lesion", 
+		      "lr4_isr", 
+		      "lr4_isrst", 
+		      "lr4_lst", 
+		      "lr4_sit", 
+		      "lr5_lesion", 
+		      "lr5_isr", 
+		      "lr5_isrst", 
+		      "lr5_lst", 
+		      "lr5_sit", 
+		      "tak", 
+		      "dap", 
+		      "tft", 
+		      "ihmi", 
+		      "ihpci", 
+		      "ihpcip", 
+		      "ihtvr", 
+		      "ihtlr", 
+		      "ihcab", 
+		      "ihpcab", 
+		      "ihtvcab", 
+		      "ihstr", 
+		      "ihstrt", 
+		      "ihbl", 
+		      "ihblsite", 
+		      "ihst", 
+		      "dis", 
+		      "dod", 
+		      "los", 
+		      "crehab", 
+		      "mortc", 
+		      "dasp", 
+		      "doap", 
+		      "dstp", 
+		      "doll", 
+		      "dfu30", 
+		      "stat30", 
+		      "dmort30", 
+		      "mort30r", 
+		      "mi30", 
+		      "st30", 
+		      "nstr", 
+		      "nstrt", 
+		      "crh30", 
+		      "rhdte", 
+		      "pc30", 
+		      "pci30", 
+		      "tvr30", 
+		      "tlr30", 
+		      "cab30", 
+		      "tvcab30", 
+		      "crh30_2", 
+		      "rhdte_2", 
+		      "pc30_2", 
+		      "pci30_2", 
+		      "tvr30_2", 
+		      "tlr30_2", 
+		      "cab30_2", 
+		      "tvcab30_2", 
+		      "crh30_3", 
+		      "rhdte_3", 
+		      "pc30_3", 
+		      "pci30_3", 
+		      "tvr30_3", 
+		      "tlr30_3", 
+		      "cab30_3", 
+		      "tvcab30_3", 
+		      "crh30_4", 
+		      "rhdte_4", 
+		      "pc30_4", 
+		      "pci30_4", 
+		      "tvr30_4", 
+		      "tlr30_4", 
+		      "cab30_4", 
+		      "tvcab30_4", 
+		      "crh30_5", 
+		      "rhdte_5", 
+		      "pc30_5", 
+		      "pci30_5", 
+		      "tvr30_5", 
+		      "tlr30_5", 
+		      "cab30_5", 
+		      "tvcab30_5", 
+		      "crh30_6", 
+		      "rhdte_6", 
+		      "pc30_6", 
+		      "pci30_6", 
+		      "tvr30_6", 
+		      "tlr30_6", 
+		      "cab30_6", 
+		      "tvcab30_6", 
+		      "unique_patient_id", 
+		      "procone"
+		    }, 
+		    {
+		      "hname", 
+		      "pcode", 
+		      "hid", 
+		      "ncrhid", 
+		      "patientid", 
+		      "sex", 
+		      "inds", 
+		      "doa", 
+		      "toa", 
+		      "age", 
+		      "htm", 
+		      "wkg", 
+		      "bmi", 
+		      "dop", 
+		      "top", 
+		      "po", 
+		      "ncrpo", 
+		      "db", 
+		      "dbm", 
+		      "pvd1", 
+		      "pvd2", 
+		      "pcabg", 
+		      "dpcabg", 
+		      "ppci", 
+		      "dppci", 
+		      "pcr", 
+		      "npcr", 
+		      "eftp", 
+		      "def", 
+		      "eft", 
+		      "ef", 
+		      "efes", 
+		      "egfri", 
+		      "egfr", 
+		      "shock", 
+		      "oca", 
+		      "pint", 
+		      "acs", 
+		      "dso", 
+		      "tso", 
+		      "ntso", 
+		      "acst", 
+		      "iht", 
+		      "phn", 
+		      "dbd", 
+		      "tbd", 
+		      "sor", 
+		      "dbdt", 
+		      "spr", 
+		      "dfmc", 
+		      "tfmc", 
+		      "sofmc", 
+		      "fmctr", 
+		      "fmctd", 
+		      "decgd", 
+		      "tecgd", 
+		      "ecgdb", 
+		      "inp", 
+		      "pci", 
+		      "pel", 
+		      "pintr", 
+		      "vsr", 
+		      "lr1_lesion", 
+		      "lr1_isr", 
+		      "lr1_isrst", 
+		      "lr1_lst", 
+		      "lr1_sit", 
+		      "lr2_lesion", 
+		      "lr2_isr", 
+		      "lr2_isrst", 
+		      "lr2_lst", 
+		      "lr2_sit", 
+		      "lr3_lesion", 
+		      "lr3_isr", 
+		      "lr3_isrst", 
+		      "lr3_lst", 
+		      "lr3_sit", 
+		      "lr4_lesion", 
+		      "lr4_isr", 
+		      "lr4_isrst", 
+		      "lr4_lst", 
+		      "lr4_sit", 
+		      "lr5_lesion", 
+		      "lr5_isr", 
+		      "lr5_isrst", 
+		      "lr5_lst", 
+		      "lr5_sit", 
+		      "tak", 
+		      "dap", 
+		      "tft", 
+		      "ihmi", 
+		      "ihpci", 
+		      "ihpcip", 
+		      "ihtvr", 
+		      "ihtlr", 
+		      "ihcab", 
+		      "ihpcab", 
+		      "ihtvcab", 
+		      "ihstr", 
+		      "ihstrt", 
+		      "ihbl", 
+		      "ihblsite", 
+		      "ihst", 
+		      "dis", 
+		      "dod", 
+		      "los", 
+		      "crehab", 
+		      "mortc", 
+		      "dasp", 
+		      "doap", 
+		      "dstp", 
+		      "doll", 
+		      "dfu30", 
+		      "stat30", 
+		      "dmort30", 
+		      "mort30r", 
+		      "mi30", 
+		      "st30", 
+		      "nstr", 
+		      "nstrt", 
+		      "crh30", 
+		      "rhdte", 
+		      "pc30", 
+		      "pci30", 
+		      "tvr30", 
+		      "tlr30", 
+		      "cab30", 
+		      "tvcab30", 
+		      "crh30_2", 
+		      "rhdte_2", 
+		      "pc30_2", 
+		      "pci30_2", 
+		      "tvr30_2", 
+		      "tlr30_2", 
+		      "cab30_2", 
+		      "tvcab30_2", 
+		      "crh30_3", 
+		      "rhdte_3", 
+		      "pc30_3", 
+		      "pci30_3", 
+		      "tvr30_3", 
+		      "tlr30_3", 
+		      "cab30_3", 
+		      "tvcab30_3", 
+		      "crh30_4", 
+		      "rhdte_4", 
+		      "pc30_4", 
+		      "pci30_4", 
+		      "tvr30_4", 
+		      "tlr30_4", 
+		      "cab30_4", 
+		      "tvcab30_4", 
+		      "crh30_5", 
+		      "rhdte_5", 
+		      "pc30_5", 
+		      "pci30_5", 
+		      "tvr30_5", 
+		      "tlr30_5", 
+		      "cab30_5", 
+		      "tvcab30_5", 
+		      "crh30_6", 
+		      "rhdte_6", 
+		      "pc30_6", 
+		      "pci30_6", 
+		      "tvr30_6", 
+		      "tlr30_6", 
+		      "cab30_6", 
+		      "tvcab30_6", 
+		      "unique_patient_id", 
+		      "procone"
+		    }
+		  ),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Expanded Count", {{"procone", Int64.Type}}), 
+		  #"Removed Columns" = Table.RemoveColumns(#"Changed Type1", {"sex", "inds"}), 
+		  #"Merged Queries1" = Table.NestedJoin(
+		    #"Removed Columns", 
+		    {"unique_patient_id"}, 
+		    #"base Patient", 
+		    {"UniquePatient#"}, 
+		    "base Patient", 
+		    JoinKind.Inner
+		  ), 
+		  #"Expanded base Patient1" = Table.ExpandTableColumn(
+		    #"Merged Queries1", 
+		    "base Patient", 
+		    {"NCRPatientId", "Gender", "Indigenous status"}, 
+		    {"ncr_patientId", "sex", "inds"}
+		  ), 
+		  #"Added Conditional age_group_id" = Table.AddColumn(
+		    #"Expanded base Patient1", 
+		    "age_group_id", 
+		    each 
+		      if [age] <= 59 then
+		        0
+		      else if [age] <= 69 then
+		        1
+		      else if [age] <= 79 then
+		        2
+		      else if [age] >= 80 then
+		        3
+		      else
+		        null, 
+		    Int64.Type
+		  ), 
+		  #"Merged Queries" = Table.NestedJoin(
+		    #"Added Conditional age_group_id", 
+		    {"ncrhid"}, 
+		    Hospital, 
+		    {"NCRHospitalID"}, 
+		    "base Hospital", 
+		    JoinKind.LeftOuter
+		  ), 
+		  #"Expanded base Hospital" = Table.ExpandTableColumn(
+		    #"Merged Queries", 
+		    "base Hospital", 
+		    {"State"}, 
+		    {"State"}
+		  ), 
+		  #"Added Conditional primarypci" = Table.AddColumn(
+		    #"Expanded base Hospital", 
+		    "primarypci", 
+		    each 
+		      if ([sor] <> null and [sor] <= 720)
+		        and [iht]
+		        = 0 and ([inp] = 0 or [inp] = null) and [pci]
+		        = 1
+		      then
+		        1
+		      else
+		        0, 
+		    Int64.Type
+		  ), 
+		  bmi_calculation = Table.AddColumn(
+		    #"Added Conditional primarypci", 
+		    "bmiscore", 
+		    each [wkg] / Number.Power(([htm] / 100), 2), 
+		    type number
+		  ), 
+		  #"Rounded Off" = Table.TransformColumns(
+		    bmi_calculation, 
+		    {{"bmiscore", each Number.Round(_, 1), type number}}
+		  ), 
+		  #"bmi_id calculation" = Table.AddColumn(
+		    #"Rounded Off", 
+		    "bmi_id", 
+		    each 
+		      if [bmiscore] = null then
+		        5
+		      else if [bmiscore] >= 30 then
+		        4
+		      else if [bmiscore] >= 25 then
+		        3
+		      else if [bmiscore] >= 18.5 then
+		        2
+		      else if [bmiscore] < 18.5 then
+		        1
+		      else
+		        5, 
+		    Int64.Type
+		  ), 
+		  empci30_cond = (_) => (
+		    ([pc30] = 0 and [pci30] = 1)
+		      or ([pc30_2] = 0 and [pci30_2] = 1)
+		      or ([pc30_3] = 0 and [pci30_3] = 1)
+		      or ([pc30_4] = 0 and [pci30_4] = 1)
+		      or ([pc30_5] = 0 and [pci30_5] = 1)
+		      or ([pc30_6] = 0 and [pci30_6] = 1)
+		  ), 
+		  emcab30_cond = (_) => (
+		    ([pc30] = 0 and [cab30] = 1)
+		      or ([pc30_2] = 0 and [cab30_2] = 1)
+		      or ([pc30_3] = 0 and [cab30_3] = 1)
+		      or ([pc30_4] = 0 and [cab30_4] = 1)
+		      or ([pc30_5] = 0 and [cab30_5] = 1)
+		      or ([pc30_6] = 0 and [cab30_6] = 1)
+		  ), 
+		  #"Added Conditional sickohca" = Table.AddColumn(
+		    #"bmi_id calculation", 
+		    "sickohca", 
+		    each if [oca] = 1 and ([pint] = 1 or [pintr] = 1) then 1 else 0, 
+		    Int64.Type
+		  ), 
+		  #"Added Conditional shocksohca" = Table.AddColumn(
+		    #"Added Conditional sickohca", 
+		    "shocksohca", 
+		    each if [shock] = 1 or [sickohca] = 1 then 1 else 0, 
+		    Int64.Type
+		  ), 
+		  #"Inserted Date mortdays" = Table.AddColumn(
+		    #"Added Conditional shocksohca", 
+		    "mortdays", 
+		    each Duration.Days([dmort30] - [dod]), 
+		    Int64.Type
+		  ), 
+		  #"Added Conditional mort30" = Table.AddColumn(
+		    #"Inserted Date mortdays", 
+		    "mort30", 
+		    each if ([mortdays] <> null and [mortdays] < 31) or [dis] = 6 then 1 else 0, 
+		    Int64.Type
+		  ), 
+		  #"Added Conditional LVEF" = Table.AddColumn(
+		    #"Added Conditional mort30", 
+		    "LVEF", 
+		    each 
+		      if [efes] = null and [ef] <> null and [ef] >= 50 then
+		        1
+		      else if [efes] = null and [ef] <> null and [ef] >= 44 and [ef] <= 49 then
+		        2
+		      else if [efes] = null and [ef] <> null and [ef] >= 35 and [ef] <= 44 then
+		        3
+		      else if [efes] = null and [ef] <> null and [ef] < 35 then
+		        4
+		      else
+		        null, 
+		    Int64.Type
+		  ), 
+		  #"Added Conditional crh30any" = Table.AddColumn(
+		    #"Added Conditional LVEF", 
+		    "crh30any", 
+		    each 
+		      if [crh30]
+		        = 1 or [crh30_2]
+		        = 1 or [crh30_3]
+		        = 1 or [crh30_4]
+		        = 1 or [crh30_5]
+		        = 1 or [crh30_6]
+		        = 1
+		      then
+		        1
+		      else
+		        0, 
+		    Int64.Type
+		  ), 
+		  #"Added Conditional pc30any" = Table.AddColumn(
+		    #"Added Conditional crh30any", 
+		    "pc30any", 
+		    each 
+		      if [pc30] = 1 or [pc30_2] = 1 or [pc30_3] = 1 or [pc30_4] = 1 or [pc30_5] = 1 or [pc30_6] = 1 then
+		        1
+		      else
+		        0, 
+		    Int64.Type
+		  ), 
+		  #"Added Conditional upc30any" = Table.AddColumn(
+		    #"Added Conditional pc30any", 
+		    "upc30any", 
+		    each 
+		      if [pc30] = 0 or [pc30_2] = 0 or [pc30_3] = 0 or [pc30_4] = 0 or [pc30_5] = 0 or [pc30_6] = 0 then
+		        1
+		      else
+		        0, 
+		    Int64.Type
+		  ), 
+		  #"Added Conditional ihmortexcshocksohca" = Table.AddColumn(
+		    #"Added Conditional upc30any", 
+		    "ihmortexcshocksohca", 
+		    each if [shock] = 1 or [sickohca] = 1 then 0 else if [dis] = 6 then 1 else 0, 
+		    Int64.Type
+		  ), 
+		  #"Added Conditional unprevascnew" = Table.AddColumn(
+		    #"Added Conditional ihmortexcshocksohca", 
+		    "unprevascnew", 
+		    each if ([ihpcip] = 0 or ([ihpcab] = 0 and [ihtvcab] = 1)) then 1 else 0, 
+		    Int64.Type
+		  ), 
+		  #"Added Conditional empci30" = Table.AddColumn(
+		    #"Added Conditional unprevascnew", 
+		    "empci30", 
+		    each if empci30_cond(_) then 1 else 0, 
+		    Int64.Type
+		  ), 
+		  #"Added Conditional emcab30" = Table.AddColumn(
+		    #"Added Conditional empci30", 
+		    "emcab30", 
+		    each if emcab30_cond(_) then 1 else 0, 
+		    Int64.Type
+		  ), 
+		  #"Added Conditional unprevasc30new" = Table.AddColumn(
+		    #"Added Conditional emcab30", 
+		    "unprevasc30new", 
+		    each if [unprevascnew] = 1 or [empci30] = 1 or [emcab30] = 1 then 1 else 0, 
+		    Int64.Type
+		  ), 
+		  #"Added Conditional ihmort" = Table.AddColumn(
+		    #"Added Conditional unprevasc30new", 
+		    "ihmort", 
+		    each if [dis] = 6 then 1 else 0, 
+		    Int64.Type
+		  ), 
+		  #"Added Conditional mort30excshocksohca" = Table.AddColumn(
+		    #"Added Conditional ihmort", 
+		    "mort30excshocksohca", 
+		    each 
+		      if [shock] = 1 or [sickohca] = 1 then
+		        0
+		      else if ([mortdays] <> null and [mortdays] < 31) or [dis] = 6 then
+		        1
+		      else
+		        0, 
+		    Int64.Type
+		  ), 
+		  #"Added Conditional str30" = Table.AddColumn(
+		    #"Added Conditional mort30excshocksohca", 
+		    "str30", 
+		    each if [st30] = 1 then 1 else 0, 
+		    Int64.Type
+		  ), 
+		  #"Added Conditional macenew" = Table.AddColumn(
+		    #"Added Conditional str30", 
+		    "macenew", 
+		    each 
+		      if [mort30]
+		        = 1 or [ihmi]
+		        = 1 or [mi30]
+		        = 1 or [ihst]
+		        = 1 or [ihst]
+		        = 2 or [st30]
+		        = 1 or [st30]
+		        = 2 or [unprevasc30new]
+		        = 1
+		      then
+		        1
+		      else
+		        0, 
+		    Int64.Type
+		  ), 
+		  #"Added Conditional maccenew" = Table.AddColumn(
+		    #"Added Conditional macenew", 
+		    "maccenew", 
+		    each 
+		      if [mort30]
+		        = 1 or [ihmi]
+		        = 1 or [mi30]
+		        = 1 or [ihstr]
+		        = 1 or [str30]
+		        = 1 or [ihst]
+		        = 1 or [ihst]
+		        = 2 or [st30]
+		        = 1 or [st30]
+		        = 2 or [unprevasc30new]
+		        = 1
+		      then
+		        1
+		      else
+		        0, 
+		    Int64.Type
+		  ), 
+		  #"Added Conditional ihmacenew" = Table.AddColumn(
+		    #"Added Conditional maccenew", 
+		    "ihmacenew", 
+		    each if [dis] = 6 or [ihmi] = 1 or [ihst] = 1 or [ihst] = 2 or [unprevascnew] = 1 then 1 else 0, 
+		    Int64.Type
+		  ), 
+		  #"Added Conditional ihmaccenew" = Table.AddColumn(
+		    #"Added Conditional ihmacenew", 
+		    "ihmaccenew", 
+		    each 
+		      if [dis] = 6 or [ihmi] = 1 or [ihstr] = 1 or [ihst] = 1 or [ihst] = 2 or [unprevascnew] = 1 then
+		        1
+		      else
+		        0, 
+		    Int64.Type
+		  ), 
+		  #"Added Conditional unpltvr" = Table.AddColumn(
+		    #"Added Conditional ihmaccenew", 
+		    "unpltvr", 
+		    each if (([ihpcip] = 0 and [ihtvr] = 1) or ([ihpcab] = 0 and [ihtvcab] = 1)) then 1 else 0, 
+		    Int64.Type
+		  ), 
+		  #"Added majorbl" = Table.AddColumn(
+		    #"Added Conditional unpltvr", 
+		    "majorbl", 
+		    each if List.Contains({3, 4, 5, 7, 8}, [ihbl]) then 1 else 0, 
+		    Int64.Type
+		  ), 
+		  #"Added sigcomplication" = Table.AddColumn(
+		    #"Added majorbl", 
+		    "sigcomplication", 
+		    each 
+		      if (
+		        [dis]
+		          = 6 or [ihmi]
+		          = 1 or [unpltvr]
+		          = 1 or [ihstr]
+		          = 1 or [majorbl]
+		          = 1 or ([ihst] = 1 or [ihst] = 2)
+		      )
+		      then
+		        1
+		      else
+		        0, Int64.Type
+		  ),
+		    #"Added lesionlocgptxt" = Table.AddColumn(#"Added sigcomplication", "lesionlocgptxt", each if [lr1_lesion] = 1 or [lr1_lesion] =2 then "LAD"
+		else if  [lr1_lesion] = 3 or [lr1_lesion] = 5 then "LCx"
+		else if  [lr1_lesion] = 4 then "Leftmain"
+		else if  [lr1_lesion] = 6 then "RCA"
+		else if  [lr1_lesion] = 7 or [lr1_lesion] = 8 or [lr1_lesion] = 9 then "Graft"
+		else "Un-Defined", type text),
+		    #"Inserted Merged Date and Time" = Table.AddColumn(#"Added lesionlocgptxt", "s2d", each Int64.From(Duration.TotalMinutes(([doa] & [toa])-([dso]&[tso]))), Int64.Type),
+		    #"Added access_route" = Table.AddColumn(#"Inserted Merged Date and Time", "access_route", each if [pel] = 1 then "Brachial" else if [pel] = 2 then "Radial" else if [pel] = 3 then "Femoral" else "Blank pel", type text),
+		    #"Added Conditional los" = Table.AddColumn(#"Added access_route", "conditional_los", each if [los] = null then null else if [los] > 30 then 30 else [los], Int64.Type),
+		    #"Added Conditional fmctr_300" = Table.AddColumn(#"Added Conditional los", "fmctr_300_verify", each if [fmctr] = null then null else if [fmctr] > 300 then 300 else [fmctr], Int64.Type),
+		    #"Added Conditional non_acs" = Table.AddColumn(#"Added Conditional fmctr_300", "non_acs", each if [los] =  null then null else if [los] >= 2 then "2+" else if [los] >= 1 then "1" else if [los] = 0 then "0" else null, type text),
+		    #"Added Conditional Column" = Table.AddColumn(#"Added Conditional non_acs", "NSTEMI days", each if [los] = null then null else if [los] >= 5 then "5+" else if [los] >= 4 then "4" else if [los] >= 3 then "3" else if [los] >= 2 then "2" else if [los] >= 1 then "1" else if [los] >= 0 then "0" else null, type text),
+		    #"Added Index" = Table.AddIndexColumn(#"Added Conditional Column", "Index", 0, 1, Int64.Type)
+		in
+		    #"Added Index"
+		```
+	lineageTag: 16c6ef4c-807f-4422-9ac9-2b552413ff62
+	queryGroup: Preprocess
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression vw_Data_Extract_Report =
+		let
+		    Source = Sql.Database(server_name, database_name),
+		    fact_vw_Data_Extract_Report = Source{[Schema="fact",Item="vw_Data_Extract_Report"]}[Data]
+		in
+		    fact_vw_Data_Extract_Report
+	lineageTag: 3bbb09e6-6e81-4317-8f64-b06a224e954f
+	queryGroup: Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'base Hospital' =
+		let
+		    Source = Hospital,
+		    #"Renamed Columns" = Table.RenameColumns(Source,{{"HospitalID", "Hospital_ID"}}),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Renamed Columns",{"HospitalName", "NCRHospitalID", "Hospital_ID", "State", "PublicOrPrivate", "MetroVsNonmetro", "SiteStatus"}),
+		    #"Added Custom" = Table.AddColumn(#"Removed Other Columns", "All", each "All", type text)
+		in
+		    #"Added Custom"
+	lineageTag: b1c930d8-d256-41c1-ab1e-26a987347624
+	queryGroup: Preprocess
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+/// vw_Lesion_location_superGroup
+expression vw_Lesion_location_superGroup =
+		let
+		    Source = Sql.Database(server_name, database_name, [CommandTimeout=#duration(0, 1, 0, 0)]),
+		    refdata_vw_Lesion_location_superGroup = Source{[Schema="refdata",Item="vw_Lesion_location_superGroup"]}[Data]
+		in
+		    refdata_vw_Lesion_location_superGroup
+	lineageTag: 6463fedb-fe06-4b29-bdb8-6c9ea5186cd2
+	queryGroup: Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'base Lesion location' =
+		let
+		    Source = vw_Lesion_location_superGroup,
+		    #"Renamed Columns" = Table.RenameColumns(Source,{{"Field Description", "Lesion Group"}})
+		in
+		    #"Renamed Columns"
+	lineageTag: ca87dabc-c58d-4450-a619-843b070ef4a7
+	queryGroup: Preprocess
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression server_name = "t-auea-ncr-sqlsv.database.windows.net" meta [IsParameterQuery=true, List={"t-auea-ncr-sqlsv.database.windows.net"}, DefaultValue="t-auea-ncr-sqlsv.database.windows.net", Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 0f20bac5-09dd-4fca-a0f6-d378df72b935
+
+	annotation PBI_ResultType = Text
+
+expression database_name = "t-auea-ncr-sqldb" meta [IsParameterQuery=true, List={"t-auea-ncr-sqldb"}, DefaultValue="t-auea-ncr-sqldb", Type="Text", IsParameterQueryRequired=true]
+	lineageTag: dd39c497-6c7d-4f96-b3e5-2ca5f0471347
+
+	annotation PBI_ResultType = Text
+

@@ -1,0 +1,7 @@
+role TAS
+	modelPermission: read
+
+	tablePermission 'Restricted State' = [STATE] = "TAS"
+
+	annotation PBI_Id = fd6bc67761434cdea4bf9fe51cc298d0
+

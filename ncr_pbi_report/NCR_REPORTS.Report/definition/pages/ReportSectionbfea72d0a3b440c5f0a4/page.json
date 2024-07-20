@@ -1,0 +1,105 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/1.0.0/schema.json",
+  "name": "ReportSectionbfea72d0a3b440c5f0a4",
+  "displayName": "12. Lesion Location & Lesion Procedure Success",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "objects": {
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "201L"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "4cf7b05f90fe4af981a9",
+      "target": "4e4031e97a80f5450c17",
+      "type": "NoFilter"
+    },
+    {
+      "source": "4cf7b05f90fe4af981a9",
+      "target": "ce88f6570e2ef99a0da0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "4cf7b05f90fe4af981a9",
+      "target": "38e501a58ab975181021",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ff95dc83f19a9d362342",
+      "target": "4e4031e97a80f5450c17",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ff95dc83f19a9d362342",
+      "target": "ce88f6570e2ef99a0da0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ff95dc83f19a9d362342",
+      "target": "38e501a58ab975181021",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ff95dc83f19a9d362342",
+      "target": "0c650ba889f4152aaa9a",
+      "type": "DataFilter"
+    },
+    {
+      "source": "4cf7b05f90fe4af981a9",
+      "target": "e49253f7cb52e684dcc6",
+      "type": "NoFilter"
+    },
+    {
+      "source": "4cf7b05f90fe4af981a9",
+      "target": "5703829e897c46540b5a",
+      "type": "NoFilter"
+    },
+    {
+      "source": "4cf7b05f90fe4af981a9",
+      "target": "be9a3a5b72eabf889834",
+      "type": "NoFilter"
+    },
+    {
+      "source": "4cf7b05f90fe4af981a9",
+      "target": "92c767a56e5fd1bef7f5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "4cf7b05f90fe4af981a9",
+      "target": "63521952c040dc2341fc",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ff95dc83f19a9d362342",
+      "target": "92c767a56e5fd1bef7f5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ff95dc83f19a9d362342",
+      "target": "63521952c040dc2341fc",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ff95dc83f19a9d362342",
+      "target": "5703829e897c46540b5a",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ff95dc83f19a9d362342",
+      "target": "be9a3a5b72eabf889834",
+      "type": "NoFilter"
+    }
+  ]
+}

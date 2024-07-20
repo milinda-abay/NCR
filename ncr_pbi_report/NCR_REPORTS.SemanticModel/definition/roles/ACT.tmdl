@@ -1,0 +1,7 @@
+role ACT
+	modelPermission: read
+
+	tablePermission 'Restricted State' = [STATE] = "ACT"
+
+	annotation PBI_Id = 66e7297101104a7cb927be727e38fd53
+

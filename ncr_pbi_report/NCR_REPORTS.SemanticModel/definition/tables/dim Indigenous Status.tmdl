@@ -1,0 +1,43 @@
+table 'dim Indigenous Status'
+	lineageTag: 42a39cc1-9b23-4ef1-b87c-f71f4e8c8054
+
+	column 'Field Value'
+		dataType: int64
+		isKey
+		formatString: 0
+		lineageTag: 0c279ed4-3a0a-463a-821e-98cd4dd67652
+		summarizeBy: none
+		sourceColumn: Field Value
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Field Description'
+		dataType: string
+		lineageTag: 4453e857-4bce-407b-a6ba-db77421f82bd
+		summarizeBy: none
+		sourceColumn: Field Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sort_Order
+		dataType: int64
+		formatString: 0
+		lineageTag: fd57081f-40fc-4026-8566-7024751f2355
+		summarizeBy: none
+		sourceColumn: Sort_Order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dim Indigenous Status-8d6e0a88-0272-4ce9-bdc5-1c4dbfedab82' = m
+		mode: import
+		queryGroup: 'Dimension tables'
+		source =
+				let
+				    Source = Sql.Database("t-auea-ncr-sqlsv.database.windows.net", "t-auea-ncr-sqldb"),
+				    refdata_vw_indigenous_status = Source{[Schema="refdata",Item="vw_indigenous_status"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(refdata_vw_indigenous_status,{{"Field Value", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

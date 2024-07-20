@@ -1,0 +1,85 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/1.0.0/schema.json",
+  "name": "ReportSection195a2a4305ae07d53bd5",
+  "displayName": "05. Discharge Medication",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "476f0000d748d20510d2",
+      "target": "d79e9d3ea6629b862769",
+      "type": "NoFilter"
+    },
+    {
+      "source": "476f0000d748d20510d2",
+      "target": "edc51f5001158cba3c38",
+      "type": "NoFilter"
+    },
+    {
+      "source": "476f0000d748d20510d2",
+      "target": "f0ad1a7e9e87129e07ea",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ee4233107eb39a932d07",
+      "target": "d79e9d3ea6629b862769",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ee4233107eb39a932d07",
+      "target": "edc51f5001158cba3c38",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ee4233107eb39a932d07",
+      "target": "f0ad1a7e9e87129e07ea",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ee4233107eb39a932d07",
+      "target": "b1278432e26325604dba",
+      "type": "NoFilter"
+    },
+    {
+      "source": "476f0000d748d20510d2",
+      "target": "e78007a77305beb1cd04",
+      "type": "NoFilter"
+    },
+    {
+      "source": "476f0000d748d20510d2",
+      "target": "dcb34e2d4104b6506321",
+      "type": "NoFilter"
+    },
+    {
+      "source": "476f0000d748d20510d2",
+      "target": "f535e91087200228087c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "476f0000d748d20510d2",
+      "target": "8ddc2c18427604030120",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ee4233107eb39a932d07",
+      "target": "f535e91087200228087c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ee4233107eb39a932d07",
+      "target": "8ddc2c18427604030120",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ee4233107eb39a932d07",
+      "target": "e78007a77305beb1cd04",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ee4233107eb39a932d07",
+      "target": "dcb34e2d4104b6506321",
+      "type": "NoFilter"
+    }
+  ]
+}

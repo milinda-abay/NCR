@@ -1,0 +1,53 @@
+relationship 5829383c-6cc4-4f20-8c42-c24cbeaace8e
+	fromColumn: 'fact DER'.bmi_id
+	toColumn: 'dim BMI_Groups'.bmi_id
+
+relationship 53a77126-f436-41bc-b48f-69de611a86df
+	fromColumn: 'fact DER'.age_group_id
+	toColumn: 'dim Age Group'.age_group_id
+
+relationship 1817d425-a4a8-4a1f-a843-e228dd142c7b
+	fromColumn: 'fact DER'.sex
+	toColumn: 'dim Sex'.ID
+
+relationship d7cdb0f5-9298-439f-9daf-4ca1f69a537b
+	fromColumn: 'fact DER'.dbm
+	toColumn: 'dim Diabetes management type'.'Field Value'
+
+relationship 9821b666-0415-461f-a50b-b7c088c4059d
+	fromColumn: 'fact DER'.acst
+	toColumn: 'dim TypeofACS'.'Field Value'
+
+relationship 0a6a0ee3-254f-422a-aca1-271385b8036d
+	fromColumn: 'fact DER'.inds
+	toColumn: 'dim Indigenous Status'.'Field Value'
+
+relationship 5b500f5d-5102-4be1-becf-563f59a8a54b
+	fromColumn: 'fact DER'.pci
+	toColumn: 'dim PCI indication'.'Field Value'
+
+relationship 82b33506-94e5-4fe1-845b-79b5e0302a2e
+	fromColumn: 'fact DER'.dop
+	toColumn: Calendar.Date
+
+relationship 99775a88-4505-47ed-9abd-11a6a79d8661
+	fromColumn: 'fact DER'.ncrhid
+	toColumn: 'dim Hospital'.NCRHospitalID
+
+relationship cdc1ced7-4d9b-4ad8-94a8-6fc505593c62
+	fromColumn: 'fact DER'.unique_patient_id
+	toColumn: 'dim Patient'.UniquePatient#
+
+relationship 29fc9d3a-8c9e-41d1-91ac-adece9c98366
+	fromColumn: 'fact DER'.State
+	toColumn: 'dim State'.ID
+
+relationship d4cf5191-14f0-4908-941f-f840f936b787
+	isActive: false
+	fromColumn: 'fact DER'.State
+	toColumn: 'Restricted State'.ID
+
+relationship 014a3821-6686-4e66-a3f2-00eb5148a8e3
+	fromColumn: 'fact DER'.lr1_lesion
+	toColumn: 'dim Lesion location'.'Field Value'
+

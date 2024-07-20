@@ -1,0 +1,7 @@
+role NSW
+	modelPermission: read
+
+	tablePermission 'Restricted State' = [STATE] = "NSW"
+
+	annotation PBI_Id = d6c6782b9b6f4d0eb275429ecda1af59
+

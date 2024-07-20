@@ -1,0 +1,37 @@
+table 'dim BMI_Groups'
+	lineageTag: 897d0dc2-9ec8-4a9b-b92f-ad71d67edc37
+
+	column BMI(kg/M3)
+		dataType: string
+		lineageTag: 3df6961e-0daf-41ac-9240-1e0dcc226735
+		summarizeBy: none
+		sourceColumn: BMI(kg/M3)
+
+		annotation SummarizationSetBy = Automatic
+
+	column bmi_id
+		dataType: int64
+		isKey
+		formatString: 0
+		lineageTag: 3031fd3f-7a86-4b64-bf35-351fff9830e8
+		summarizeBy: none
+		sourceColumn: bmi_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dim BMI_Groups-f9d886e6-3204-440c-89db-715cec1d50cb' = m
+		mode: import
+		queryGroup: 'Dimension tables'
+		source = ```
+				let
+				  Source = #table(
+				    type table [#"bmi_id" = Int64.Type, #"BMI(kg/M3)" = text], 
+				    {{1, "Underweight"}, {2, "Normal"}, {3, "Obese"}, {4, "Over Weight"}, {5, "Unknown"}}
+				  ),
+				    Custom1 = Table.AddKey(Source,{"bmi_id"},true)
+				in
+				    Custom1
+				```
+
+	annotation PBI_ResultType = Table
+

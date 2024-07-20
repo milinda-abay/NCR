@@ -1,0 +1,155 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/1.0.0/schema.json",
+  "name": "ReportSectionc8ca25e11e1c59e62e70",
+  "displayName": "07. 30-Day Unplanned Events",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "objects": {
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "188L"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "e36609e465091d07a9dd",
+      "target": "2267b68650a56b594cc1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "e36609e465091d07a9dd",
+      "target": "9e1981dac00d43261b21",
+      "type": "NoFilter"
+    },
+    {
+      "source": "e36609e465091d07a9dd",
+      "target": "e64cbf6d4a6868059387",
+      "type": "NoFilter"
+    },
+    {
+      "source": "e36609e465091d07a9dd",
+      "target": "cbc1d3e42346307a66d3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "582767f42290010087eb",
+      "target": "2267b68650a56b594cc1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "582767f42290010087eb",
+      "target": "9e1981dac00d43261b21",
+      "type": "NoFilter"
+    },
+    {
+      "source": "582767f42290010087eb",
+      "target": "e64cbf6d4a6868059387",
+      "type": "NoFilter"
+    },
+    {
+      "source": "582767f42290010087eb",
+      "target": "cbc1d3e42346307a66d3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "e36609e465091d07a9dd",
+      "target": "d3d64c52c65dbda8abb6",
+      "type": "NoFilter"
+    },
+    {
+      "source": "582767f42290010087eb",
+      "target": "d3d64c52c65dbda8abb6",
+      "type": "NoFilter"
+    },
+    {
+      "source": "b9d5d06b9772a17a4031",
+      "target": "d3d64c52c65dbda8abb6",
+      "type": "DataFilter"
+    },
+    {
+      "source": "84cf86d182730b090e26",
+      "target": "2267b68650a56b594cc1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "84cf86d182730b090e26",
+      "target": "9e1981dac00d43261b21",
+      "type": "NoFilter"
+    },
+    {
+      "source": "84cf86d182730b090e26",
+      "target": "e64cbf6d4a6868059387",
+      "type": "NoFilter"
+    },
+    {
+      "source": "84cf86d182730b090e26",
+      "target": "cbc1d3e42346307a66d3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "84cf86d182730b090e26",
+      "target": "6428cd23d87a02eb1110",
+      "type": "NoFilter"
+    },
+    {
+      "source": "84cf86d182730b090e26",
+      "target": "d3d64c52c65dbda8abb6",
+      "type": "NoFilter"
+    },
+    {
+      "source": "84cf86d182730b090e26",
+      "target": "fbe27512c6151ec00221",
+      "type": "NoFilter"
+    },
+    {
+      "source": "84cf86d182730b090e26",
+      "target": "2b2d2f480a4cbcbc60a5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "84cf86d182730b090e26",
+      "target": "b74cea9ba3006e24303b",
+      "type": "NoFilter"
+    },
+    {
+      "source": "84cf86d182730b090e26",
+      "target": "7c72042165c3c0d0ea72",
+      "type": "NoFilter"
+    },
+    {
+      "source": "e36609e465091d07a9dd",
+      "target": "6428cd23d87a02eb1110",
+      "type": "NoFilter"
+    },
+    {
+      "source": "e36609e465091d07a9dd",
+      "target": "99e8f760a335dad92cdc",
+      "type": "NoFilter"
+    },
+    {
+      "source": "e36609e465091d07a9dd",
+      "target": "f1427e770c014c3b69a6",
+      "type": "NoFilter"
+    },
+    {
+      "source": "582767f42290010087eb",
+      "target": "99e8f760a335dad92cdc",
+      "type": "NoFilter"
+    },
+    {
+      "source": "582767f42290010087eb",
+      "target": "6428cd23d87a02eb1110",
+      "type": "NoFilter"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+// Learn more about DAX queries at https://aka.ms/dax-queries
+
+// Here is a sample DAX query from your model, click 'Run'
+// Try other DAX queries by right clicking a table, column, or measure in the data pane and choosing one from 'Quick queries'
+EVALUATE
+CALCULATETABLE (
+        'fact DER',
+        'fact DER'[pci] = 1,
+        'fact DER'[iht] = 0,
+        NOT ( ISBLANK ( 'fact DER'[iht] ) ),
+        'fact DER'[inp] = 0,
+        'fact DER'[s2d] >= 0,
+        'fact DER'[s2d] < 721,
+        NOT ( ISBLANK ( 'fact DER'[s2d] ) ),
+        'fact DER'[dbdt] > 0
+    )

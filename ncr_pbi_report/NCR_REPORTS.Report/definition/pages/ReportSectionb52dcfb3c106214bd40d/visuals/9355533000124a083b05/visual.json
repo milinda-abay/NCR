@@ -1,0 +1,122 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "9355533000124a083b05",
+  "position": {
+    "x": 0,
+    "y": 624,
+    "z": 21000,
+    "width": 1280,
+    "height": 96,
+    "tabOrder": 16000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Data downloaded from this application is removing it from a protected, secure environment. Once removed, you acknowledge that you are responsible for the handling of this information and that you will comply with the Privacy Act (1988) and any relevant state/territory legislation.",
+                    "textStyle": {
+                      "fontFamily": "Calibri",
+                      "fontSize": "8pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Please also note that the extrapolations about NCR data must be limited and carefully considered. The NCR data represented in these reports are not risk-adjusted. In the early stages of the registry, any conclusions made may therefore be misleading if raw data is interpreted without suitable caution. This report is based on data as of the date of the report generation and therefore may change over time if data is updated. For more information please contact ",
+                    "textStyle": {
+                      "fontFamily": "Calibri",
+                      "fontSize": "8pt"
+                    }
+                  },
+                  {
+                    "value": "info@nationalcardiacregistry.org.au",
+                    "textStyle": {
+                      "fontFamily": "Calibri",
+                      "fontSize": "8pt"
+                    },
+                    "url": "mailto:info@nationalcardiacregistry.org.au"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "This report is confidential and not for distribution outside of your state/territory. The report must not be published or reproduced without written approval from the NCR Steering Committee.",
+                    "textStyle": {
+                      "fontFamily": "Calibri",
+                      "fontSize": "8pt"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Important:'"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

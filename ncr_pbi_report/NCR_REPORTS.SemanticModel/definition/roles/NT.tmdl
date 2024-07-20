@@ -1,0 +1,7 @@
+role NT
+	modelPermission: read
+
+	tablePermission 'Restricted State' = [STATE] = "NT"
+
+	annotation PBI_Id = c819f81ffe5140808e5cdd26fff6a8a9
+

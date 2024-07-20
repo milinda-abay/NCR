@@ -1,0 +1,57 @@
+table 'dim Age Group'
+	lineageTag: d678b462-b6fc-4b2c-8cab-52dc48b0494c
+
+	column 'Age Groups'
+		dataType: string
+		lineageTag: b9a9ca85-9e76-4ea0-9a24-82938587600c
+		summarizeBy: none
+		sourceColumn: Age Groups
+
+		annotation SummarizationSetBy = Automatic
+
+	column start_age
+		dataType: int64
+		formatString: 0
+		lineageTag: 2d0da82c-7275-494e-bad2-9498095c8801
+		summarizeBy: none
+		sourceColumn: start_age
+
+		annotation SummarizationSetBy = Automatic
+
+	column end_age
+		dataType: int64
+		formatString: 0
+		lineageTag: f0dc387e-ca99-4499-a1c5-66581d1bc0cd
+		summarizeBy: none
+		sourceColumn: end_age
+
+		annotation SummarizationSetBy = Automatic
+
+	column age_group_id
+		dataType: int64
+		isKey
+		formatString: 0
+		lineageTag: 0715f5ed-010e-4960-a9f5-e54d81364b0e
+		summarizeBy: none
+		sourceColumn: age_group_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dim Age Group-9cc2683e-b383-40de-8e8c-058aac4cf983' = m
+		mode: import
+		queryGroup: 'Dimension tables'
+		source =
+				let
+				    Source = Sql.Database("t-auea-ncr-sqlsv.database.windows.net", "t-auea-ncr-sqldb"),
+				    refdata_vw_Age_Group = Source{[Schema="refdata",Item="vw_Age_Group"]}[Data],
+				    #"Inserted Text Before Delimiter" = Table.AddColumn(refdata_vw_Age_Group, "start_age", each Text.BeforeDelimiter([Age Groups], " "), type text),
+				    #"Inserted Text Between Delimiters" = Table.AddColumn(#"Inserted Text Before Delimiter", "end_age", each Text.BetweenDelimiters([Age Groups], " ", " ", 1, 0), type text),
+				    #"Replaced Value" = Table.ReplaceValue(#"Inserted Text Between Delimiters","&",null,Replacer.ReplaceValue,{"end_age"}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Replaced Value",{{"start_age", Int64.Type}, {"end_age", Int64.Type}}),
+				    #"Sorted Rows" = Table.Sort(#"Changed Type",{{"start_age", Order.Ascending}}),
+				    #"Added Index" = Table.AddIndexColumn(#"Sorted Rows", "age_group_id", 0, 1, Int64.Type)
+				in
+				    #"Added Index"
+
+	annotation PBI_ResultType = Table
+

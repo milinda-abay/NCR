@@ -1,0 +1,43 @@
+table 'dim Sex'
+	lineageTag: ddaf93ce-c658-457e-a58a-4b16a4203191
+
+	column ID
+		dataType: int64
+		isKey
+		formatString: 0
+		lineageTag: 2eeb8923-647f-4544-969c-7fd923f73f07
+		summarizeBy: none
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: c6fef036-bab0-40b5-9bc3-267bd2dd66ca
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sort_Order
+		dataType: int64
+		formatString: 0
+		lineageTag: f6e915da-0615-4147-bcd6-be77180437ec
+		summarizeBy: none
+		sourceColumn: Sort_Order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dim Sex-3c7a12b1-4317-4b65-982a-64fbfb50c0ed' = m
+		mode: import
+		queryGroup: 'Dimension tables'
+		source =
+				let
+				    Source = Sql.Database("t-auea-ncr-sqlsv.database.windows.net", "t-auea-ncr-sqldb"),
+				    refdata_vw_gender = Source{[Schema="refdata",Item="vw_gender"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(refdata_vw_gender,{{"ID", Int64.Type}, {"Sort_Order", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

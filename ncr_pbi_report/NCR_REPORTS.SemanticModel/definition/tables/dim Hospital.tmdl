@@ -1,0 +1,85 @@
+table 'dim Hospital'
+	lineageTag: 9e8dc4ce-6cf2-453e-86d8-7e5ef07a65e3
+
+	column HospitalName
+		dataType: string
+		lineageTag: fa69abbd-856c-4661-9ce9-c56dc0362845
+		summarizeBy: none
+		sourceColumn: HospitalName
+
+		annotation SummarizationSetBy = Automatic
+
+	column NCRHospitalID
+		dataType: int64
+		isKey
+		formatString: 0
+		lineageTag: b3545507-2e6d-4b58-8028-9e0430ac018f
+		summarizeBy: none
+		sourceColumn: NCRHospitalID
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: int64
+		formatString: 0
+		lineageTag: da7d1c8e-6201-4927-9567-5dcf89215cba
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column PublicOrPrivate
+		dataType: int64
+		formatString: 0
+		lineageTag: 2bf3f83a-b629-4e2c-8dfd-362f2d6c5692
+		summarizeBy: none
+		sourceColumn: PublicOrPrivate
+
+		annotation SummarizationSetBy = Automatic
+
+	column MetroVsNonmetro
+		dataType: int64
+		formatString: 0
+		lineageTag: 64c53e91-8de4-43e4-9a74-33f7409840e2
+		summarizeBy: none
+		sourceColumn: MetroVsNonmetro
+
+		annotation SummarizationSetBy = Automatic
+
+	column SiteStatus
+		dataType: int64
+		formatString: 0
+		lineageTag: cb86311f-0399-4444-80ac-5e15d4e0e345
+		summarizeBy: none
+		sourceColumn: SiteStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column All
+		dataType: string
+		lineageTag: 0772bcca-013b-42b6-b091-40d9e13e5458
+		summarizeBy: none
+		sourceColumn: All
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hospital_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 73f395df-1ef3-4b74-9280-54f2448b9234
+		summarizeBy: none
+		sourceColumn: Hospital_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dim Hospital-caa977b1-dd2d-4071-99af-7a263e5365a4' = m
+		mode: import
+		queryGroup: 'Dimension tables'
+		source =
+				let
+				    Source = #"base Hospital"
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

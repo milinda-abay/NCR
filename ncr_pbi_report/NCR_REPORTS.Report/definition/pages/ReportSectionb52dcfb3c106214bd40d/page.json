@@ -1,0 +1,95 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/1.0.0/schema.json",
+  "name": "ReportSectionb52dcfb3c106214bd40d",
+  "displayName": "02. Primary PCI for STEMI DBT ≤ 90 minutes",
+  "displayOption": "FitToWidth",
+  "height": 720,
+  "width": 1280,
+  "objects": {
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "202L"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "fa84032dec5075a7b518",
+      "target": "3c7a52dd8341b0a021de",
+      "type": "NoFilter"
+    },
+    {
+      "source": "fa84032dec5075a7b518",
+      "target": "f4ac48b0d04d3bb13eb2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "fa84032dec5075a7b518",
+      "target": "3470f971b69dabcb244e",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2cf5c7789aaacecd611a",
+      "target": "3c7a52dd8341b0a021de",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2cf5c7789aaacecd611a",
+      "target": "f4ac48b0d04d3bb13eb2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2cf5c7789aaacecd611a",
+      "target": "3470f971b69dabcb244e",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2cf5c7789aaacecd611a",
+      "target": "06176edcb2bd33e3506d",
+      "type": "DataFilter"
+    },
+    {
+      "source": "fa84032dec5075a7b518",
+      "target": "66e9c54baedae62242ad",
+      "type": "NoFilter"
+    },
+    {
+      "source": "fa84032dec5075a7b518",
+      "target": "12335d0e15be4d0a4435",
+      "type": "NoFilter"
+    },
+    {
+      "source": "fa84032dec5075a7b518",
+      "target": "2ba258d437121060e24c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "fa84032dec5075a7b518",
+      "target": "6e27936eba991e9c350e",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2cf5c7789aaacecd611a",
+      "target": "2ba258d437121060e24c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2cf5c7789aaacecd611a",
+      "target": "6e27936eba991e9c350e",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2cf5c7789aaacecd611a",
+      "target": "12335d0e15be4d0a4435",
+      "type": "NoFilter"
+    }
+  ]
+}

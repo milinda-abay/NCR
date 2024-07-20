@@ -1,0 +1,7 @@
+role QLD
+	modelPermission: read
+
+	tablePermission 'Restricted State' = [STATE] = "QLD"
+
+	annotation PBI_Id = 896f32218d444cb1822d0979268157ef
+

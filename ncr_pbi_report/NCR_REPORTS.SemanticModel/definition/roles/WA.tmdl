@@ -1,0 +1,7 @@
+role WA
+	modelPermission: read
+
+	tablePermission 'Restricted State' = [STATE] = "WA"
+
+	annotation PBI_Id = 9753c059056847be9829992d3ac79b49
+
