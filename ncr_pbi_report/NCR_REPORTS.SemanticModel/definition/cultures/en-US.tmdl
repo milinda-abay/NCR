@@ -396,7 +396,9 @@ cultureInfo en-US
 			      },
 			      "State": "Generated",
 			      "Terms": [
-			        {},
+			        {
+			          "": {}
+			        },
 			        {
 			          "province": {
 			            "Type": "Noun",
@@ -5000,7 +5002,9 @@ cultureInfo en-US
 			      },
 			      "State": "Generated",
 			      "Terms": [
-			        {},
+			        {
+			          "": {}
+			        },
 			        {
 			          "province": {
 			            "Type": "Noun",
@@ -5979,7 +5983,9 @@ cultureInfo en-US
 			      },
 			      "State": "Generated",
 			      "Terms": [
-			        {},
+			        {
+			          "": {}
+			        },
 			        {
 			          "province": {
 			            "Type": "Noun",
@@ -6028,6 +6034,16 @@ cultureInfo en-US
 			              "Agent": "OfficeThesaurus"
 			            },
 			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "State": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -7799,19 +7815,7 @@ cultureInfo en-US
 			          "ConceptualProperty": "HospitalName"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Hospital Name": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "hospital.ncrhospitalid": {
 			      "Definition": {
@@ -7820,19 +7824,7 @@ cultureInfo en-US
 			          "ConceptualProperty": "NCRHospitalID"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Hospital": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "admission.hospital": {
 			      "Definition": {
@@ -7841,19 +7833,7 @@ cultureInfo en-US
 			          "ConceptualProperty": "Hospital"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Hospitals": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "patient.patient": {
 			      "Definition": {
@@ -7862,10 +7842,157 @@ cultureInfo en-US
 			          "ConceptualProperty": "Patient#"
 			        }
 			      },
+			      "State": "Generated"
+			    },
+			    "national_summary_db.hosptial_national": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "National Summary DB",
+			          "ConceptualProperty": "Hosptial National"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "national_summary_db.patient_national": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "National Summary DB",
+			          "ConceptualProperty": "Patient National"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "national_summary_db.pci_cases_national": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "National Summary DB",
+			          "ConceptualProperty": "PCI Cases National"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "national_summary_rpt.inhospital_mace__national": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "National Summary RPT",
+			          "ConceptualProperty": "In-hospital MACE (%) National"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "national_summary_rpt.inhospital_mace_without_shock_ohca_national": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "National Summary RPT",
+			          "ConceptualProperty": "In-hospital MACE without shock/ohca National"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "national_summary_rpt.inhospital_macce__national": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "National Summary RPT",
+			          "ConceptualProperty": "In-hospital MACCE (%) National"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "national_summary_rpt.inhospital_macce_without_shock_ohca_national": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "National Summary RPT",
+			          "ConceptualProperty": "In-hospital MACCE without shock/ohca National"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "national_summary_rpt.discharged_on_dapt__national": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "National Summary RPT",
+			          "ConceptualProperty": "Discharged on DAPT (%) National"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "rehospitalisations.column30day_unplanned_cardiac_readmission_rate_after_pci": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Re-hospitalisations",
+			          "ConceptualProperty": "30-day unplanned cardiac readmission rate after PCI"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "hospital_bridge_table.funnelplotstate": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Hospital Bridge Table",
+			          "ConceptualProperty": "FunnelPlotState"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "rpt_unplanned_revascularisation_within_30_days_fp.area": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "rpt_Unplanned_revascularisation_within_30_days FP",
+			          "ConceptualProperty": "Area"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "national_summary_rehospitalisation.column30day_unplanned_cardiac_readmission_rate_after_pci_national": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "National Summary Rehospitalisation",
+			          "ConceptualProperty": "30-day unplanned cardiac readmission rate after PCI National"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "base_measures.rows_in_der": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "Rows in DER"
+			        }
+			      },
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "Patients": {
+			          "PCI Cases": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Cases (N)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "PCI casees": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Cases (%)": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -7876,11 +8003,11 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "national_summary_db.hosptial_national": {
+			    "base_measures.report_1_hospital": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "National Summary DB",
-			          "ConceptualProperty": "Hosptial National"
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "Report 1 Hospital"
 			        }
 			      },
 			      "State": "Generated",
@@ -7897,11 +8024,11 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "national_summary_db.patient_national": {
+			    "base_measures.report_1_patient": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "National Summary DB",
-			          "ConceptualProperty": "Patient National"
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "Report 1 Patient"
 			        }
 			      },
 			      "State": "Generated",
@@ -7918,11 +8045,11 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "national_summary_db.pci_cases_national": {
+			    "base_measures.report_1_pci": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "National Summary DB",
-			          "ConceptualProperty": "PCI Cases National"
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "Report 1 PCI"
 			        }
 			      },
 			      "State": "Generated",
@@ -7939,17 +8066,17 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "national_summary_rpt.inhospital_mace__national": {
+			    "base_measures.count_hospitals_meet_target": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "National Summary RPT",
-			          "ConceptualProperty": "In-hospital MACE (%) National"
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "Count hospitals meet target"
 			        }
 			      },
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "In-hospital MACE (%)": {
+			          "Hospitals achieved 75% target": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -7960,17 +8087,17 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "national_summary_rpt.inhospital_mace_without_shock_ohca_national": {
+			    "base_measures.cases_90_min_door": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "National Summary RPT",
-			          "ConceptualProperty": "In-hospital MACE without shock/ohca National"
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "Cases <90 min Door"
 			        }
 			      },
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "In-hospital MACE without shock/ohca": {
+			          "Cases(%)": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -7981,17 +8108,17 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "national_summary_rpt.inhospital_macce__national": {
+			    "base_measures.report_2_pci": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "National Summary RPT",
-			          "ConceptualProperty": "In-hospital MACCE (%) National"
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "Report 2 PCI"
 			        }
 			      },
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "In-hospital MACCE (%)": {
+			          "PCI Cases": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -8002,105 +8129,11 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "national_summary_rpt.inhospital_macce_without_shock_ohca_national": {
+			    "base_measures.report_2_hospital": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "National Summary RPT",
-			          "ConceptualProperty": "In-hospital MACCE without shock/ohca National"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "In-hospital MACCE without shock/ohca": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
-			    },
-			    "national_summary_rpt.discharged_on_dapt__national": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "National Summary RPT",
-			          "ConceptualProperty": "Discharged on DAPT (%) National"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Discharged on DAPT (%)": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
-			    },
-			    "rehospitalisations.column30day_unplanned_cardiac_readmission_rate_after_pci": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Re-hospitalisations",
-			          "ConceptualProperty": "30-day unplanned cardiac readmission rate after PCI"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Cases": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        },
-			        {
-			          "Cardiac Rehospitalisation (%)": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
-			    },
-			    "hospital_bridge_table.funnelplotstate": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Hospital Bridge Table",
-			          "ConceptualProperty": "FunnelPlotState"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "State": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
-			    },
-			    "rpt_unplanned_revascularisation_within_30_days_fp.area": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "rpt_Unplanned_revascularisation_within_30_days FP",
-			          "ConceptualProperty": "Area"
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "Report 2 Hospital"
 			        }
 			      },
 			      "State": "Generated",
@@ -8117,11 +8150,189 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "national_summary_rehospitalisation.column30day_unplanned_cardiac_readmission_rate_after_pci_national": {
+			    "base_measures.report_2_patient": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "National Summary Rehospitalisation",
-			          "ConceptualProperty": "30-day unplanned cardiac readmission rate after PCI National"
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "Report 2 Patient"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Patients": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.mortalityih_without_shock_ohca_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "Mortality(ih) without shock/ohca (%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Mortality In-hospital without shock/OHCA (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.mortalityih": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "Mortality(ih)(%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Mortality In-hospital %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.mace_ih_without_shock_ohca": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "MACE (ih) without shock/ohca(%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "In-hospital MACE without shock/OHCA (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.mace_ih_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "MACE (ih) (%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "In-hospital MACE (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.macce_ih_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "MACCE (ih) (%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "In-hospital MACCE (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.macce_ih_without_shock_ohca": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "MACCE (ih) without shock/ohca(%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "In-hospital MACCE without shock/OHCA (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.daptgp_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "daptgp (%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Discharged on DAPT (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Cases": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.lltgp_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "lltgp (%)"
 			        }
 			      },
 			      "State": "Generated",
@@ -8137,7 +8348,866 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Cardiac Rehospitalisation (%)": {
+			          "Discharged on LLT (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.cardiac_rehabilitation": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "Cardiac Rehabilitation"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Referral to rehab (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.cardiac_rehospitalisation_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "Cardiac Rehospitalisation (%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Unplanned Cardiac Rehospitalisation (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.mortality_30_day_without_shock_ohca_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "Mortality 30 day without shock/ohca (%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "30 day Mortality without shock/OHCA (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "30 day Mortality without shock/OHCA(%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.mortality_30_day": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "Mortality 30 day(%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "30 day Mortality": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.macce_30_day_without_shock_ohca": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "MACCE 30 day without shock/ohca(%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "30 day MACCE without shock/OHCA(%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.macce_30_day_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "MACCE 30 day (%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "30 day MACCE (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.mace_30_day_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "MACE 30 day (%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "30 day MACE (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.mace_30_day_without_shock_ohca": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "MACE 30 day without shock/ohca(%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "30 day MACE without shock/ohca(%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.age__mean": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "Age - Mean"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "- Mean": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.age__median": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "Age - Median"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "- Median": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.gender_female": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "Gender -female"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "- Gender -female (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.diabetes": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "Diabetes"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "- Diabetes (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.pvd_history": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "PVD History"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "- PVD History (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.previous_pci_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "Previous PCI (%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "- Previous PCI (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.previous_cabg_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "Previous CABG (%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "- Previous CABG (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.bmiunderweight_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "BMIUnderweight (%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "- Underweight (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.bminormal_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "BMINormal (%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "- Normal (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.bmioverweight_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "BMIOverweight (%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "- Overweight (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.bmiobese_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "BMIObese (%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "- Obese (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Severe Obesity (BMI≥35) Female (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Severe Obesity (BMI≥35) Male (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.egfrgreaterthan60": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "EGFRGreaterThan60"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "- EGFR>60 (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.egfrbetween31and60": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "EGFRBetween31And60"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "- EGFR 31-60 (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.egfrlessthanthirty": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "EGFRLessThanThirty"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "- EGFR <=30 (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.efnormal_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "EFNormal (%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "- Normal EF (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.efmild_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "EFMild (%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "- Mild EF (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.efmoderate_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "EFModerate (%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "- Moderate EF (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.efsevere_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "EFSevere (%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "- Severe EF (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.cardiogenic_shock_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "Cardiogenic Shock (%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "- Cardiogenic Shock (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.out_of_hospital_cardiac_arrest_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "Out of hospital cardiac arrest (%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "- Out of hospital cardiac arrest (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.preprocedural_intubation_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "Preprocedural intubation (%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "- Preprocedural intubation (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.procedural_intubation_required_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "Procedural Intubation required (%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "- Procedural Intubation required (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.alllesionsucess": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "alllesionsucess(%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Lesion Success (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.procedure_success_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "procedure_success (%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Procedure Success (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Procedure Success (%": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.mean_los": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "Mean LOS"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "LOS (mean days)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.mean_non_acs_los_days": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "Mean Non ACS LOS (Days)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Non ACS LOS (mean days)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.non_acs_cases": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "non ACS cases"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Non ACS Cases": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.nstemi_cases": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "NSTEMI cases"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "NSTEMI Cases": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "base_measures.mean_nstemi_los_days": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Base Measures",
+			          "ConceptualProperty": "Mean NSTEMI LOS (Days)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "NSTEMI LOS (mean days)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fact_der.non_acs": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fact DER",
+			          "ConceptualProperty": "non_acs"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "LOS (days)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fact_der.nstemi_days": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fact DER",
+			          "ConceptualProperty": "NSTEMI days"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "NSTEMI LOS (days)": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",

@@ -19,7 +19,7 @@
             "height": 104,
             "width": 234
           },
-          "zIndex": 15,
+          "zIndex": 14,
           "expandedHeight": 248
         },
         {
@@ -33,7 +33,7 @@
             "height": 128,
             "width": 234
           },
-          "zIndex": 18,
+          "zIndex": 17,
           "expandedHeight": 300
         },
         {
@@ -47,7 +47,7 @@
             "height": 104,
             "width": 234
           },
-          "zIndex": 5,
+          "zIndex": 4,
           "expandedHeight": 300
         },
         {
@@ -61,7 +61,7 @@
             "height": 104,
             "width": 234
           },
-          "zIndex": 17,
+          "zIndex": 16,
           "expandedHeight": 104
         },
         {
@@ -75,7 +75,7 @@
             "height": 128,
             "width": 234
           },
-          "zIndex": 12,
+          "zIndex": 11,
           "expandedHeight": 176
         },
         {
@@ -89,7 +89,7 @@
             "height": 104,
             "width": 234
           },
-          "zIndex": 7,
+          "zIndex": 6,
           "expandedHeight": 152
         },
         {
@@ -103,7 +103,7 @@
             "height": 104,
             "width": 234
           },
-          "zIndex": 9,
+          "zIndex": 8,
           "expandedHeight": 152
         },
         {
@@ -117,7 +117,7 @@
             "height": 104,
             "width": 234
           },
-          "zIndex": 8,
+          "zIndex": 7,
           "expandedHeight": 152
         },
         {
@@ -130,7 +130,7 @@
             "height": 104,
             "width": 234
           },
-          "zIndex": 10,
+          "zIndex": 9,
           "expandedHeight": 152
         },
         {
@@ -144,7 +144,7 @@
             "height": 104,
             "width": 234
           },
-          "zIndex": 6,
+          "zIndex": 5,
           "expandedHeight": 152
         },
         {
@@ -158,7 +158,7 @@
             "height": 72,
             "width": 234
           },
-          "zIndex": 4,
+          "zIndex": 3,
           "expandedHeight": 296
         },
         {
@@ -186,7 +186,7 @@
             "height": 104,
             "width": 234
           },
-          "zIndex": 14,
+          "zIndex": 13,
           "expandedHeight": 300
         },
         {
@@ -200,7 +200,7 @@
             "height": 72,
             "width": 234
           },
-          "zIndex": 3,
+          "zIndex": 18,
           "expandedHeight": 128
         },
         {
@@ -214,7 +214,7 @@
             "height": 104,
             "width": 234
           },
-          "zIndex": 11,
+          "zIndex": 10,
           "expandedHeight": 300
         },
         {
@@ -242,7 +242,7 @@
             "height": 366.66187276615233,
             "width": 344
           },
-          "zIndex": 16
+          "zIndex": 15
         },
         {
           "location": {
@@ -255,7 +255,7 @@
             "height": 104,
             "width": 234
           },
-          "zIndex": 13,
+          "zIndex": 12,
           "expandedHeight": 171
         }
       ],

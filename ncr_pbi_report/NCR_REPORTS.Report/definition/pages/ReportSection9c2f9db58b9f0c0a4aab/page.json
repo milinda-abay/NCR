@@ -1,8 +1,0 @@
-{
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/1.0.0/schema.json",
-  "name": "ReportSection9c2f9db58b9f0c0a4aab",
-  "displayName": "TOC",
-  "displayOption": "FitToPage",
-  "height": 720,
-  "width": 1280
-}

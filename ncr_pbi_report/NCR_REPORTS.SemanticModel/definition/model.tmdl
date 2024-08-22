@@ -27,7 +27,7 @@ queryGroup DEV
 
 	annotation PBI_QueryGroupOrder = 4
 
-annotation PBIDesktopVersion = 2.131.901.0 (24.07)
+annotation PBIDesktopVersion = 2.131.1203.0 (24.07)
 
 annotation __PBI_TimeIntelligenceEnabled = 0
 
